@@ -2,11 +2,12 @@
 import { GoogleGenAI } from "@google/genai";
 
 export async function getBeautyAdvice(userQuery: string, imageBase64?: string) {
-  const ai = new GoogleGenAI({ apiKey: process.env.API_KEY });
-  
+  const apiKey = process.env.API_KEY || process.env.GEMINI_API_KEY;
+  const ai = new GoogleGenAI({ apiKey: apiKey as string });
+
   try {
     const parts: any[] = [{ text: userQuery }];
-    
+
     if (imageBase64) {
       parts.push({
         inlineData: {
@@ -21,7 +22,7 @@ export async function getBeautyAdvice(userQuery: string, imageBase64?: string) {
       model: 'gemini-3-flash-preview',
       contents: { parts },
       config: {
-        systemInstruction: `You are the Lead Beauty Expert at 'Lofty Beauty' in Colombo, Sri Lanka. 
+        systemInstruction: `You are the Lead Beauty Expert at 'Lofty Beauty' in Akkaraipattu, Sri Lanka. 
         Your persona is: Helpful, Professional, Friendly, and Easy to understand.
         
         Style Rules:
