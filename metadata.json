@@ -1,0 +1,7 @@
+{
+  "name": "Lofty Beauty Parlour",
+  "description": "Bespoke beauty rituals and premium skincare consultations in the heart of Vienna.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
