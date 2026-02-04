@@ -11,7 +11,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 9500',
     duration: '60 min',
     category: ServiceCategory.FACIAL,
-    image: 'https://images.unsplash.com/photo-1512290923902-8a9f81dc236c?q=80&w=2070&auto=format&fit=crop',
+    image: '/images/facial-skin.jpg',
     isPopular: true
   },
   {
@@ -21,7 +21,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 11000',
     duration: '75 min',
     category: ServiceCategory.FACIAL,
-    image: 'https://images.unsplash.com/photo-1616394584738-fc6e612e71b9?q=80&w=2070&auto=format&fit=crop'
+    image: '/images/deep-hydration.jpg'
   },
   {
     id: 'f3',
@@ -30,7 +30,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 22500',
     duration: '90 min',
     category: ServiceCategory.FACIAL,
-    image: 'https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=2070&auto=format&fit=crop',
+    image: '/images/luxury-gold.jpg',
     isPopular: true
   },
 
@@ -42,7 +42,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 8500',
     duration: '60 min',
     category: ServiceCategory.MAKEUP,
-    image: 'https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2069&auto=format&fit=crop',
+    image: '/images/special-occasion.jpg',
     isPopular: true
   },
   {
@@ -52,7 +52,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 14000',
     duration: '90 min',
     category: ServiceCategory.MAKEUP,
-    image: 'https://images.unsplash.com/photo-1512496015851-a90fb38ba796?q=80&w=2070&auto=format&fit=crop'
+    image: '/images/full-glam.jpg'
   },
 
   // --- HAIR DESIGN ---
@@ -63,7 +63,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 7500',
     duration: '75 min',
     category: ServiceCategory.HAIR,
-    image: 'https://images.unsplash.com/photo-1562322140-8baeececf3df?q=80&w=2069&auto=format&fit=crop',
+    image: '/images/signature-haircut.jpg',
     isPopular: true
   },
   {
@@ -73,7 +73,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 18000',
     duration: '180 min',
     category: ServiceCategory.HAIR,
-    image: 'https://images.unsplash.com/photo-1595476108010-b4d1f102b1b1?q=80&w=1976&auto=format&fit=crop'
+    image: '/images/soft-curls.jpg'
   },
 
   // --- NAILS & HANDS ---
@@ -84,7 +84,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5500',
     duration: '60 min',
     category: ServiceCategory.NAILS,
-    image: 'https://images.unsplash.com/photo-1604654894610-df49ff6697ad?q=80&w=1974&auto=format&fit=crop'
+    image: '/images/classic-manicure.jpg'
   },
 
   // --- BRIDAL ---
@@ -95,7 +95,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 55000',
     duration: '300 min',
     category: ServiceCategory.BRIDAL,
-    image: 'https://images.unsplash.com/photo-1594462255222-2d882516704b?q=80&w=2070&auto=format&fit=crop',
+    image: '/images/wedding-package.jpg',
     isPopular: true
   }
 ];
@@ -116,9 +116,9 @@ export const TESTIMONIALS: Testimonial[] = [
 ];
 
 export const CONTACT_INFO = {
-  address: '123 Bauddhaloka Mawatha, Colombo 007, Sri Lanka',
-  phone: '+94 77 123 4567',
-  email: 'help@loftbeauty.lk',
+  address: '73/2 AVV Road, Akkaraipattu 19, Sri Lanka',
+  phone: '+94 764336212',
+  email: 'loftybeautyparlorandcare@gmail.com',
   hours: [
     { day: 'Mon - Fri', time: '09:00 - 19:00' },
     { day: 'Sat', time: '10:00 - 17:00' },
@@ -126,6 +126,6 @@ export const CONTACT_INFO = {
   ],
   socials: {
     instagram: 'https://instagram.com/loft_beauty_parlor',
-    facebook: '#'
+    facebook: 'https://www.facebook.com/profile.php?id=100064346132290'
   }
 };

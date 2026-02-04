@@ -5,6 +5,7 @@ import { ServiceCategory, Service } from '../types';
 import { Clock, Tag, ChevronRight, SlidersHorizontal, Sparkle, X, ArrowRight, CheckCircle2, RotateCcw, Search, Sparkles, Euro } from 'lucide-react';
 import { motion, AnimatePresence, LayoutGroup, Variants } from 'framer-motion';
 import PageLoader from '../components/PageLoader';
+import { useNavigate } from 'react-router-dom';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -18,31 +19,31 @@ const containerVariants: Variants = {
 };
 
 const itemVariants: Variants = {
-  hidden: { 
-    opacity: 0, 
-    y: 25, 
+  hidden: {
+    opacity: 0,
+    y: 25,
     scale: 0.97,
-    filter: 'blur(4px)' 
+    filter: 'blur(4px)'
   },
-  show: { 
-    opacity: 1, 
-    y: 0, 
+  show: {
+    opacity: 1,
+    y: 0,
     scale: 1,
     filter: 'blur(0px)',
-    transition: { 
-      duration: 0.6, 
-      ease: [0.16, 1, 0.3, 1] as [number, number, number, number] 
+    transition: {
+      duration: 0.6,
+      ease: [0.16, 1, 0.3, 1] as [number, number, number, number]
     }
   },
-  exit: { 
-    opacity: 0, 
-    scale: 0.95, 
+  exit: {
+    opacity: 0,
+    scale: 0.95,
     y: 15,
     filter: 'blur(8px)',
-    transition: { 
+    transition: {
       duration: 0.3,
       ease: "easeInOut"
-    } 
+    }
   }
 };
 
@@ -62,21 +63,23 @@ const Services: React.FC = () => {
   const [isFilterSticky, setIsFilterSticky] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
   const [showSuccessToast, setShowSuccessToast] = useState(false);
-  
+
+  const navigate = useNavigate();
+
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const priceScrollRef = useRef<HTMLDivElement>(null);
 
   const categories = ['All', ...Object.values(ServiceCategory)];
-  
+
   const filteredServices = useMemo(() => {
     return SERVICES.filter(s => {
       // Category Match
       const matchesCategory = selectedCategory === 'All' || s.category === selectedCategory;
-      
+
       // Search Match
-      const matchesSearch = s.title.toLowerCase().includes(searchTerm.toLowerCase()) || 
-                            s.description.toLowerCase().includes(searchTerm.toLowerCase());
-      
+      const matchesSearch = s.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        s.description.toLowerCase().includes(searchTerm.toLowerCase());
+
       // Popularity Match
       const matchesPopular = !onlyPopular || s.isPopular;
 
@@ -101,7 +104,7 @@ const Services: React.FC = () => {
       setIsFilterSticky(window.scrollY > 100);
     };
     window.addEventListener('scroll', handleScroll);
-    
+
     const timer = setTimeout(() => {
       setIsInitializing(false);
     }, 1200);
@@ -126,8 +129,10 @@ const Services: React.FC = () => {
   };
 
   const handleReserve = () => {
-    setSelectedServiceForModal(null);
-    setShowSuccessToast(true);
+    if (selectedServiceForModal) {
+      navigate('/booking', { state: { serviceId: selectedServiceForModal.id } });
+      setSelectedServiceForModal(null);
+    }
   };
 
   const clearFilters = () => {
@@ -168,17 +173,16 @@ const Services: React.FC = () => {
             </section>
 
             {/* Filter & Search Section */}
-            <div className={`sticky top-[70px] md:top-[80px] z-40 transition-all duration-700 py-3 md:py-6 ${
-              isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'
-            }`}>
+            <div className={`sticky top-[70px] md:top-[80px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'
+              }`}>
               <div className="max-w-[1400px] mx-auto px-4 md:px-8 space-y-4">
-                
+
                 {/* Search Bar */}
                 <div className="relative max-w-2xl mx-auto">
                   <div className="relative group">
                     <Search className={`absolute left-5 top-1/2 -translate-y-1/2 transition-colors duration-300 ${searchTerm ? 'text-[#2d1b10]' : 'text-[#a89078]'}`} size={16} strokeWidth={1.5} />
-                    <input 
-                      type="text" 
+                    <input
+                      type="text"
                       value={searchTerm}
                       onChange={(e) => setSearchTerm(e.target.value)}
                       placeholder="Search rituals or ingredients..."
@@ -202,7 +206,7 @@ const Services: React.FC = () => {
 
                 {/* Categories Row */}
                 <div className="flex items-center relative">
-                  <div 
+                  <div
                     ref={scrollContainerRef}
                     className="flex overflow-x-auto gap-2 md:gap-4 no-scrollbar snap-x touch-pan-x py-2 flex-grow [mask-image:linear-gradient(to_right,transparent,black_5%,black_95%,transparent)]"
                   >
@@ -213,14 +217,13 @@ const Services: React.FC = () => {
                         return (
                           <motion.button
                             key={cat}
-                            whileTap={{ 
+                            whileTap={{
                               scale: 0.94,
                               transition: { type: "spring", stiffness: 400, damping: 20 }
                             }}
                             onClick={() => handleCategorySelect(cat as any)}
-                            className={`relative group flex items-center gap-2.5 whitespace-nowrap px-6 md:px-10 py-3.5 md:py-4.5 rounded-full text-[8px] md:text-[10px] font-bold tracking-[0.3em] md:tracking-[0.35em] uppercase transition-all shrink-0 snap-center ${
-                              isActive ? 'text-[#fcfaf7]' : 'text-[#a89078] hover:text-[#2d1b10]'
-                            }`}
+                            className={`relative group flex items-center gap-2.5 whitespace-nowrap px-6 md:px-10 py-3.5 md:py-4.5 rounded-full text-[8px] md:text-[10px] font-bold tracking-[0.3em] md:tracking-[0.35em] uppercase transition-all shrink-0 snap-center ${isActive ? 'text-[#fcfaf7]' : 'text-[#a89078] hover:text-[#2d1b10]'
+                              }`}
                           >
                             {isActive && (
                               <motion.div
@@ -251,11 +254,10 @@ const Services: React.FC = () => {
                         <button
                           key={range.value}
                           onClick={() => setPriceFilter(range.value)}
-                          className={`px-4 py-2 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-widest transition-all whitespace-nowrap border ${
-                            priceFilter === range.value 
-                              ? 'bg-[#a89078] text-white border-[#a89078]' 
+                          className={`px-4 py-2 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-widest transition-all whitespace-nowrap border ${priceFilter === range.value
+                              ? 'bg-[#a89078] text-white border-[#a89078]'
                               : 'bg-white text-[#a89078] border-[#ede3da] hover:border-[#a89078]'
-                          }`}
+                            }`}
                         >
                           {range.label}
                         </button>
@@ -266,11 +268,10 @@ const Services: React.FC = () => {
                   <div className="flex items-center gap-4 w-full md:w-auto justify-end">
                     <button
                       onClick={() => setOnlyPopular(!onlyPopular)}
-                      className={`flex items-center gap-2.5 px-6 py-2 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] transition-all border ${
-                        onlyPopular 
-                          ? 'bg-[#2d1b10] text-white border-[#2d1b10]' 
+                      className={`flex items-center gap-2.5 px-6 py-2 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] transition-all border ${onlyPopular
+                          ? 'bg-[#2d1b10] text-white border-[#2d1b10]'
                           : 'bg-white text-[#2d1b10] border-[#ede3da] hover:border-[#2d1b10]'
-                      }`}
+                        }`}
                     >
                       <Sparkles size={12} className={onlyPopular ? 'text-white' : 'text-[#a89078]'} />
                       Popular Choice
@@ -284,7 +285,7 @@ const Services: React.FC = () => {
             <div className="max-w-[1400px] mx-auto px-4 md:px-8 mt-8 md:mt-16 min-h-[400px]">
               <AnimatePresence mode="popLayout">
                 {filteredServices.length > 0 ? (
-                  <motion.div 
+                  <motion.div
                     key="grid"
                     variants={containerVariants}
                     initial="hidden"
@@ -292,7 +293,7 @@ const Services: React.FC = () => {
                     className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-2 gap-3 md:gap-16 lg:gap-20"
                   >
                     {filteredServices.map((service) => (
-                      <motion.div 
+                      <motion.div
                         key={service.id}
                         layout
                         variants={itemVariants}
@@ -300,7 +301,7 @@ const Services: React.FC = () => {
                         animate="show"
                         exit="exit"
                       >
-                        <motion.div 
+                        <motion.div
                           onClick={() => setSelectedServiceForModal(service)}
                           whileHover={{ y: -8, transition: { duration: 0.4 } }}
                           whileTap={{ scale: 0.98 }}
@@ -311,12 +312,12 @@ const Services: React.FC = () => {
                               <Sparkle size={8} fill="currentColor" /> Best-seller
                             </div>
                           )}
-                          
+
                           <div className="w-full md:w-52 lg:w-64 shrink-0 overflow-hidden rounded-2xl md:rounded-[2.2rem] relative mb-4 md:mb-0 aspect-square md:aspect-[4/5] shadow-inner">
-                            <motion.img 
+                            <motion.img
                               initial={{ scale: 1.1 }}
-                              src={service.image} 
-                              alt={service.title} 
+                              src={service.image}
+                              alt={service.title}
                               className="w-full h-full object-cover transition-all duration-[1.5s] ease-[0.16,1,0.3,1] group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b10]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -332,7 +333,7 @@ const Services: React.FC = () => {
                               <p className="hidden md:block text-[#5c4a3e] text-[12px] md:text-[13px] leading-relaxed font-light opacity-60 italic line-clamp-3">
                                 {service.description}
                               </p>
-                              
+
                               <div className="flex flex-wrap items-center gap-2 md:gap-6 text-[7px] md:text-[10px] font-bold uppercase tracking-[0.1em] md:tracking-[0.25em] text-[#a89078] pt-1 md:pt-3">
                                 <div className="flex items-center gap-1.5 md:gap-2.5">
                                   <Clock size={10} strokeWidth={1.5} className="opacity-40 md:w-3 md:h-3" />
@@ -346,7 +347,7 @@ const Services: React.FC = () => {
                             </div>
 
                             <div className="mt-4 md:mt-8 flex items-center">
-                              <motion.div 
+                              <motion.div
                                 className="flex items-center gap-2 bg-[#fcfaf7] group-hover:bg-[#2d1b10] group-hover:text-white px-3 md:px-6 py-2 md:py-3.5 rounded-full transition-all duration-500 text-[7px] md:text-[9px] uppercase font-bold tracking-[0.1em] md:tracking-[0.2em] shadow-sm"
                               >
                                 <span className="hidden xs:inline">Details</span> <ChevronRight size={10} className="group-hover:translate-x-1 transition-transform md:w-3 md:h-3" />
@@ -358,7 +359,7 @@ const Services: React.FC = () => {
                     ))}
                   </motion.div>
                 ) : (
-                  <motion.div 
+                  <motion.div
                     key="no-results"
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
@@ -372,7 +373,7 @@ const Services: React.FC = () => {
                     <p className="text-[#5c4a3e] font-light italic opacity-60 max-w-sm mb-10">
                       We couldn't find any services matching your specific criteria. Try broadening your refined search.
                     </p>
-                    <button 
+                    <button
                       onClick={clearFilters}
                       className="px-8 py-4 bg-[#2d1b10] text-white rounded-full text-[10px] font-bold uppercase tracking-widest hover:bg-[#3d2b1f] transition-all"
                     >
@@ -387,15 +388,15 @@ const Services: React.FC = () => {
             <AnimatePresence>
               {selectedServiceForModal && (
                 <div className="fixed inset-0 z-[200] flex items-end md:items-center justify-center p-0 md:p-8 overflow-hidden">
-                  <motion.div 
+                  <motion.div
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     onClick={() => setSelectedServiceForModal(null)}
                     className="fixed inset-0 bg-[#2d1b10]/90 backdrop-blur-2xl"
                   />
-                  
-                  <motion.div 
+
+                  <motion.div
                     initial={{ opacity: 0, scale: 0.92, y: 100, filter: 'blur(10px)' }}
                     animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
                     exit={{ opacity: 0, scale: 0.95, y: 50, filter: 'blur(10px)' }}
@@ -405,15 +406,15 @@ const Services: React.FC = () => {
                     <div className="overflow-y-auto flex-1 no-scrollbar">
                       <div className="flex flex-col md:flex-row min-h-full">
                         <div className="w-full md:w-1/2 h-72 md:h-auto relative overflow-hidden group">
-                          <motion.img 
+                          <motion.img
                             initial={{ scale: 1.25 }}
                             animate={{ scale: 1 }}
                             transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-                            src={selectedServiceForModal.image} 
-                            alt={selectedServiceForModal.title} 
-                            className="w-full h-full object-cover" 
+                            src={selectedServiceForModal.image}
+                            alt={selectedServiceForModal.title}
+                            className="w-full h-full object-cover"
                           />
-                          <button 
+                          <button
                             onClick={() => setSelectedServiceForModal(null)}
                             className="absolute top-4 right-4 md:top-6 md:right-6 p-3 md:p-4 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/20 hover:bg-white hover:text-[#2d1b10] transition-all z-20"
                           >
@@ -450,7 +451,7 @@ const Services: React.FC = () => {
                           </div>
 
                           <div className="mt-8 md:mt-20">
-                            <button 
+                            <button
                               onClick={handleReserve}
                               className="w-full group relative overflow-hidden bg-[#2d1b10] text-white py-5 md:py-8 rounded-xl md:rounded-[2rem] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[11px] flex items-center justify-center gap-4 md:gap-6 hover:bg-[#3d2b1f] transition-all shadow-2xl active:scale-95"
                             >
@@ -486,7 +487,7 @@ const Services: React.FC = () => {
                         <p className="text-[10px] md:text-[11px] font-light italic opacity-80">Concierge will contact you shortly.</p>
                       </div>
                     </div>
-                    <button 
+                    <button
                       onClick={() => setShowSuccessToast(false)}
                       className="shrink-0 flex items-center gap-1.5 bg-[#fcfaf7] text-[#2d1b10] px-4 md:px-5 py-2.5 md:py-3 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-widest hover:bg-white transition-all active:scale-95 shadow-lg"
                     >

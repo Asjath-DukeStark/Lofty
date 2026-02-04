@@ -4,14 +4,14 @@ import { Calendar, Clock, Check, ChevronLeft, ArrowRight, Sparkles, ReceiptText,
 import { SERVICES, CONTACT_INFO } from '../constants';
 import { ServiceCategory, Service } from '../types';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import PageLoader from '../components/PageLoader';
 
 const Booking: React.FC = () => {
   const [step, setStep] = useState(1);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
   const [isInitializing, setIsInitializing] = useState(true);
-  
+
   // Form State
   const [bookingDate, setBookingDate] = useState('');
   const [bookingTime, setBookingTime] = useState('Morning (09:00 - 12:00)');
@@ -19,15 +19,23 @@ const Booking: React.FC = () => {
   const [userNotes, setUserNotes] = useState('');
 
   const navigate = useNavigate();
+  const location = useLocation();
   const categories = Object.values(ServiceCategory);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsInitializing(false), 1200);
+
+    // Check for pre-selected service from navigation state
+    const state = location.state as { serviceId?: string } | null;
+    if (state?.serviceId) {
+      setSelectedServices([state.serviceId]);
+    }
+
     return () => clearTimeout(timer);
-  }, []);
+  }, [location.state]);
 
   const toggleService = (id: string) => {
-    setSelectedServices(prev => 
+    setSelectedServices(prev =>
       prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]
     );
   };
@@ -53,7 +61,7 @@ const Booking: React.FC = () => {
   const generateWhatsAppLink = () => {
     const cleanPhone = CONTACT_INFO.phone.replace(/[^0-9]/g, '');
     const serviceList = selectedData.map(s => `• ${s.title} (${s.price})`).join('\n');
-    
+
     const message = `Hello Lofty Beauty! I'd like to book a ritual journey.
 
 *Rituals:*
@@ -95,29 +103,28 @@ I'm looking forward to my visit!`;
               transition={{ duration: 0.8 }}
             >
               <div className="text-center mb-10 md:mb-16">
-                <motion.span 
+                <motion.span
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   className="text-[#a89078] uppercase tracking-[0.4em] text-[9px] md:text-[10px] font-bold mb-3 block"
                 >
                   Reservation
                 </motion.span>
-                <motion.h1 
+                <motion.h1
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   className="text-4xl md:text-6xl font-serif text-[#2d1b10] mb-6 italic leading-tight"
                 >
                   {step === 3 ? 'Journey Initialized' : 'Secure Your Journey'}
                 </motion.h1>
-                
+
                 <div className="flex justify-center items-center gap-4 md:gap-6">
                   {[1, 2, 3].map((num) => (
                     <div key={num} className="flex items-center gap-4">
-                      <motion.div 
+                      <motion.div
                         animate={step === num ? { scale: 1.15, boxShadow: "0 10px 25px -5px rgba(45,27,16,0.2)" } : { scale: 1 }}
-                        className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${
-                        step === num ? 'bg-[#2d1b10] text-white' : 'bg-[#ede3da] text-[#a89078]'
-                      }`}>
+                        className={`w-7 h-7 md:w-8 md:h-8 rounded-full flex items-center justify-center text-[10px] font-bold transition-all ${step === num ? 'bg-[#2d1b10] text-white' : 'bg-[#ede3da] text-[#a89078]'
+                          }`}>
                         {num}
                       </motion.div>
                       {num < 3 && <div className="w-8 md:w-12 h-[1px] bg-[#ede3da]"></div>}
@@ -129,7 +136,7 @@ I'm looking forward to my visit!`;
               <div className="bg-white rounded-[2.5rem] md:rounded-[3rem] shadow-xl md:shadow-2xl p-6 md:p-16 border border-[#ede3da] min-h-[450px] relative overflow-hidden">
                 <AnimatePresence mode="wait">
                   {step === 1 && (
-                    <motion.div 
+                    <motion.div
                       key="step1"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -143,12 +150,12 @@ I'm looking forward to my visit!`;
                           <span className="text-[10px] text-[#2d1b10] italic">{SERVICES.length} Options</span>
                         </div>
                       </div>
-                      
+
                       <div className="space-y-10 md:space-y-12">
                         {categories.map((cat) => {
                           const catServices = SERVICES.filter(s => s.category === cat);
                           if (catServices.length === 0) return null;
-                          
+
                           return (
                             <div key={cat} className="space-y-4 md:space-y-5">
                               <h3 className="text-[9px] md:text-[10px] uppercase tracking-[0.3em] font-bold text-[#a89078] border-b border-[#f7f1eb] pb-2 flex items-center gap-3">
@@ -162,11 +169,10 @@ I'm looking forward to my visit!`;
                                       key={s.id}
                                       whileTap={{ scale: 0.97 }}
                                       onClick={() => toggleService(s.id)}
-                                      className={`group flex items-center justify-between p-5 md:p-6 rounded-2xl border transition-all duration-500 text-left min-h-[72px] ${
-                                        isSelected 
-                                        ? 'border-[#2d1b10] bg-[#2d1b10] text-white shadow-lg' 
-                                        : 'border-[#ede3da] hover:border-[#a89078] bg-white text-[#2d1b10]'
-                                      }`}
+                                      className={`group flex items-center justify-between p-5 md:p-6 rounded-2xl border transition-all duration-500 text-left min-h-[72px] ${isSelected
+                                          ? 'border-[#2d1b10] bg-[#2d1b10] text-white shadow-lg'
+                                          : 'border-[#ede3da] hover:border-[#a89078] bg-white text-[#2d1b10]'
+                                        }`}
                                     >
                                       <div className="pr-4">
                                         <p className="font-bold text-[12px] md:text-sm uppercase tracking-wide leading-tight mb-1">{s.title}</p>
@@ -174,9 +180,8 @@ I'm looking forward to my visit!`;
                                           {s.duration} • {s.price}
                                         </p>
                                       </div>
-                                      <div className={`w-6 h-6 shrink-0 rounded-full flex items-center justify-center transition-all ${
-                                        isSelected ? 'bg-white text-[#2d1b10]' : 'border border-[#ede3da] text-transparent group-hover:border-[#a89078]'
-                                      }`}>
+                                      <div className={`w-6 h-6 shrink-0 rounded-full flex items-center justify-center transition-all ${isSelected ? 'bg-white text-[#2d1b10]' : 'border border-[#ede3da] text-transparent group-hover:border-[#a89078]'
+                                        }`}>
                                         <Check size={14} strokeWidth={3} />
                                       </div>
                                     </motion.button>
@@ -191,7 +196,7 @@ I'm looking forward to my visit!`;
                       {/* Floating Ritual Island */}
                       <AnimatePresence>
                         {selectedServices.length > 0 && (
-                          <motion.div 
+                          <motion.div
                             initial={{ y: 150, opacity: 0, x: "-50%" }}
                             animate={{ y: 0, opacity: 1, x: "-50%" }}
                             exit={{ y: 150, opacity: 0, x: "-50%" }}
@@ -208,8 +213,8 @@ I'm looking forward to my visit!`;
                                 <span className="text-sm md:text-lg font-serif text-white">LKR {totals.price}</span>
                               </div>
                             </div>
-                            
-                            <button 
+
+                            <button
                               onClick={() => setStep(2)}
                               className="bg-white text-[#2d1b10] px-7 md:px-12 py-3.5 md:py-4.5 rounded-full font-bold uppercase tracking-[0.25em] text-[10px] transition-all flex items-center justify-center gap-3 active:scale-95 shadow-xl hover:bg-[#fcfaf7]"
                             >
@@ -222,7 +227,7 @@ I'm looking forward to my visit!`;
                   )}
 
                   {step === 2 && (
-                    <motion.div 
+                    <motion.div
                       key="step2"
                       initial={{ opacity: 0, x: 20 }}
                       animate={{ opacity: 1, x: 0 }}
@@ -240,16 +245,16 @@ I'm looking forward to my visit!`;
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-6 md:gap-8">
                         <div className="space-y-2">
                           <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078] ml-2">Preferred Date</label>
-                          <input 
-                            type="date" 
+                          <input
+                            type="date"
                             value={bookingDate}
                             onChange={(e) => setBookingDate(e.target.value)}
-                            className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-xl px-6 py-4 outline-none focus:ring-1 focus:ring-[#2d1b10] text-sm appearance-none" 
+                            className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-xl px-6 py-4 outline-none focus:ring-1 focus:ring-[#2d1b10] text-sm appearance-none"
                           />
                         </div>
                         <div className="space-y-2">
                           <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078] ml-2">Time Slot</label>
-                          <select 
+                          <select
                             value={bookingTime}
                             onChange={(e) => setBookingTime(e.target.value)}
                             className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-xl px-6 py-4 outline-none text-sm appearance-none"
@@ -261,23 +266,23 @@ I'm looking forward to my visit!`;
                         </div>
                         <div className="space-y-2 md:col-span-2">
                           <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078] ml-2">Name</label>
-                          <input 
-                            type="text" 
+                          <input
+                            type="text"
                             value={userName}
                             onChange={(e) => setUserName(e.target.value)}
-                            className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-xl px-6 py-4 outline-none focus:ring-1 focus:ring-[#2d1b10] text-sm" 
-                            placeholder="How shall we address you?" 
+                            className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-xl px-6 py-4 outline-none focus:ring-1 focus:ring-[#2d1b10] text-sm"
+                            placeholder="How shall we address you?"
                           />
                         </div>
                         <div className="space-y-2 md:col-span-2">
-                           <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078] ml-2">Notes</label>
-                           <textarea 
-                            rows={3} 
+                          <label className="text-[9px] md:text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078] ml-2">Notes</label>
+                          <textarea
+                            rows={3}
                             value={userNotes}
                             onChange={(e) => setUserNotes(e.target.value)}
-                            className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-xl px-6 py-4 outline-none focus:ring-1 focus:ring-[#2d1b10] resize-none text-sm placeholder:opacity-40" 
-                            placeholder="Skin concerns or style preferences..." 
-                           />
+                            className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-xl px-6 py-4 outline-none focus:ring-1 focus:ring-[#2d1b10] resize-none text-sm placeholder:opacity-40"
+                            placeholder="Skin concerns or style preferences..."
+                          />
                         </div>
                       </div>
 
@@ -289,7 +294,7 @@ I'm looking forward to my visit!`;
                   )}
 
                   {step === 3 && (
-                    <motion.div 
+                    <motion.div
                       key="step3"
                       initial={{ opacity: 0, scale: 0.95 }}
                       animate={{ opacity: 1, scale: 1 }}
@@ -310,14 +315,14 @@ I'm looking forward to my visit!`;
                           <ReceiptText size={16} className="text-[#a89078]" />
                           <h4 className="text-[9px] md:text-[11px] uppercase tracking-[0.4em] font-bold text-[#2d1b10]">Summary</h4>
                         </div>
-                        
+
                         <div className="space-y-4">
                           {selectedData.map((s, i) => (
-                            <motion.div 
+                            <motion.div
                               initial={{ opacity: 0, x: -10 }}
                               animate={{ opacity: 1, x: 0 }}
                               transition={{ delay: 0.2 + (i * 0.1) }}
-                              key={s.id} 
+                              key={s.id}
                               className="flex justify-between items-center"
                             >
                               <div className="flex items-center gap-3 pr-4">
@@ -336,7 +341,7 @@ I'm looking forward to my visit!`;
                       </div>
 
                       <div className="flex flex-col gap-3 pt-4">
-                        <a 
+                        <a
                           href={generateWhatsAppLink()}
                           target="_blank"
                           rel="noopener noreferrer"
@@ -344,8 +349,8 @@ I'm looking forward to my visit!`;
                         >
                           <MessageCircle size={18} /> Send via WhatsApp
                         </a>
-                        <button 
-                          onClick={() => navigate('/')} 
+                        <button
+                          onClick={() => navigate('/')}
                           className="w-full px-8 py-5 text-[#a89078] rounded-full text-[10px] font-bold uppercase tracking-widest hover:text-[#2d1b10] transition-all active:scale-95"
                         >
                           Return Home
