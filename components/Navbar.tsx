@@ -36,24 +36,27 @@ const Navbar: React.FC = () => {
   return (
     <>
       <nav className="fixed top-6 left-0 right-0 z-[100] px-4 md:px-8">
-        <motion.div 
+        <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className={`mx-auto transition-all duration-700 ease-[0.16,1,0.3,1] bg-white rounded-full flex items-center justify-between shadow-[0_15px_40px_-10px_rgba(45,27,16,0.12)] border border-[#ede3da] ${
-            scrolled ? 'max-w-[1000px] py-3 px-6 md:px-8' : 'max-w-[1200px] py-4 px-8 md:px-12'
-          }`}
+          className={`mx-auto transition-all duration-700 ease-[0.16,1,0.3,1] bg-white rounded-full flex items-center justify-between shadow-[0_15px_40px_-10px_rgba(45,27,16,0.12)] border border-[#ede3da] ${scrolled ? 'max-w-[1000px] py-3 px-6 md:px-8' : 'max-w-[1200px] py-4 px-8 md:px-12'
+            }`}
         >
           {/* Logo Branding */}
-          <Link to="/" className="flex items-center gap-3 md:gap-5 group">
-            <motion.div 
-              whileHover={{ rotate: 90 }}
-              transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+          <Link to="/" className="flex items-center gap-3 md:gap-4 group">
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              className="relative"
             >
-              <LogoIcon className={`${scrolled ? 'w-6 h-6' : 'w-7 h-7 md:w-8 md:h-8'} text-[#2d1b10]`} />
+              <img
+                src="/images/Loty logo.jpeg"
+                alt="Lofty Logo"
+                className={`${scrolled ? 'w-10 h-10' : 'w-12 h-12 md:w-14 md:h-14'} rounded-full object-cover transition-all duration-700 shadow-md`}
+              />
             </motion.div>
-            <div className="flex flex-col md:flex-row md:items-center md:gap-3 leading-none">
-              <span className="text-base md:text-xl font-serif font-bold tracking-[0.15em] text-[#2d1b10]">LOFTY</span>
-              <span className="text-[10px] md:text-xl font-serif italic font-light opacity-50 text-[#2d1b10] tracking-widest">BEAUTY</span>
+            <div className="flex flex-col leading-none">
+              <span className="text-sm md:text-lg font-serif font-bold tracking-[0.15em] text-[#2d1b10]">LOFTY</span>
+              <span className="text-[8px] md:text-[10px] font-serif italic font-light opacity-50 text-[#2d1b10] tracking-widest mt-1">BEAUTY</span>
             </div>
           </Link>
 
@@ -65,13 +68,12 @@ const Navbar: React.FC = () => {
                 <Link
                   key={link.path}
                   to={link.path}
-                  className={`relative text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-500 hover:text-[#2d1b10] ${
-                    isActive ? 'text-[#2d1b10]' : 'text-[#a89078]'
-                  }`}
+                  className={`relative text-[10px] uppercase tracking-[0.3em] font-bold transition-all duration-500 hover:text-[#2d1b10] ${isActive ? 'text-[#2d1b10]' : 'text-[#a89078]'
+                    }`}
                 >
                   {link.name}
                   {isActive && (
-                    <motion.div 
+                    <motion.div
                       layoutId="active-dot"
                       className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-1 h-1 bg-[#2d1b10] rounded-full"
                     />
@@ -79,8 +81,8 @@ const Navbar: React.FC = () => {
                 </Link>
               );
             })}
-            
-            <Link 
+
+            <Link
               to="/booking"
               className="ml-4 px-8 py-3.5 bg-[#2d1b10] text-white rounded-full text-[10px] font-bold uppercase tracking-[0.3em] hover:bg-[#3d2b1f] transition-all shadow-lg active:scale-95"
             >
@@ -89,7 +91,7 @@ const Navbar: React.FC = () => {
           </div>
 
           {/* Mobile Menu Trigger */}
-          <button 
+          <button
             onClick={() => setIsOpen(true)}
             className="p-2 lg:hidden text-[#2d1b10] hover:opacity-50 transition-opacity"
           >
@@ -101,26 +103,26 @@ const Navbar: React.FC = () => {
       {/* Full Screen Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[110] bg-[#fcfaf7] flex flex-col p-8 md:p-12"
           >
             <div className="flex justify-between items-center mb-24">
-               <div className="flex items-center gap-4">
-                  <LogoIcon className="w-8 h-8 text-[#2d1b10]" />
-                  <div className="flex items-center gap-3">
-                    <span className="text-xl font-serif font-bold tracking-[0.15em] text-[#2d1b10]">LOFTY</span>
-                    <span className="text-xl font-serif italic font-light opacity-50 text-[#2d1b10] tracking-widest">BEAUTY</span>
-                  </div>
-               </div>
-               <button 
-                 onClick={() => setIsOpen(false)}
-                 className="p-4 rounded-full bg-white border border-[#ede3da] text-[#2d1b10] shadow-sm"
-               >
-                 <X size={24} strokeWidth={1} />
-               </button>
+              <div className="flex items-center gap-4">
+                <img src="/images/Loty logo.jpeg" alt="Lofty Logo" className="w-12 h-12 rounded-full object-cover shadow-sm" />
+                <div className="flex flex-col leading-none">
+                  <span className="text-xl font-serif font-bold tracking-[0.15em] text-[#2d1b10]">LOFTY</span>
+                  <span className="text-xs font-serif italic font-light opacity-50 text-[#2d1b10] tracking-widest mt-1">BEAUTY</span>
+                </div>
+              </div>
+              <button
+                onClick={() => setIsOpen(false)}
+                className="p-4 rounded-full bg-white border border-[#ede3da] text-[#2d1b10] shadow-sm"
+              >
+                <X size={24} strokeWidth={1} />
+              </button>
             </div>
 
             <div className="flex-1 flex flex-col space-y-10 md:space-y-12">

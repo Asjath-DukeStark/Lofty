@@ -15,7 +15,7 @@ const Footer: React.FC = () => {
     <footer className="bg-[#2d1b10] text-[#a89078] py-24">
       <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-3 gap-16">
         <div className="flex flex-col items-start">
-          <LogoIcon className="w-12 h-12 mb-8 text-[#a89078]/40" />
+          <img src="/images/Loty logo.jpeg" alt="Lofty Logo" className="w-20 h-20 mb-8 rounded-full object-cover opacity-90 shadow-lg" />
           <h3 className="text-[#fcfaf7] text-2xl font-serif mb-8 uppercase tracking-[0.3em] font-light">Lofty Beauty</h3>
           <p className="mb-8 leading-relaxed opacity-70 font-light text-sm">
             Grounded aesthetics for the modern soul. Premium skincare and wellness protocols in the heart of Vienna.

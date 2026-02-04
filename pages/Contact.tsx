@@ -14,8 +14,16 @@ const Contact: React.FC = () => {
     return () => clearTimeout(timer);
   }, []);
 
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const [message, setMessage] = useState('');
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
+    const cleanPhone = CONTACT_INFO.phone.replace(/[^0-9]/g, '');
+    const wsMessage = `Hello Lofty Beauty! I'd like to send a request.\n\n*Name:* ${name}\n*Phone:* ${phone}\n*Message:* ${message}`;
+    const link = `https://wa.me/${cleanPhone}?text=${encodeURIComponent(wsMessage)}`;
+    window.open(link, '_blank');
     setSubmitted(true);
     setTimeout(() => setSubmitted(false), 5000);
   };
@@ -26,10 +34,10 @@ const Contact: React.FC = () => {
         {isInitializing ? (
           <PageLoader key="loader" label="Establishing Access" />
         ) : (
-          <motion.div 
+          <motion.div
             key="content"
-            initial={{ opacity: 0, y: 20 }} 
-            animate={{ opacity: 1, y: 0 }} 
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
             <div className="text-center mb-20">
@@ -49,7 +57,7 @@ const Contact: React.FC = () => {
                     { icon: Mail, label: "Email Us", value: CONTACT_INFO.email },
                     { icon: MapPin, label: "Find Us", value: CONTACT_INFO.address, full: true }
                   ].map((item, i) => (
-                    <motion.div 
+                    <motion.div
                       key={i}
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
@@ -60,20 +68,20 @@ const Contact: React.FC = () => {
                         <item.icon size={24} strokeWidth={1.5} />
                       </div>
                       <h3 className="font-bold uppercase tracking-[0.3em] text-[10px] text-[#a89078] mb-3">{item.label}</h3>
-                      <p className="text-[#2d1b10] font-serif text-lg italic">{item.value}</p>
+                      <p className="text-[#2d1b10] font-serif text-lg italic break-all">{item.value}</p>
                     </motion.div>
                   ))}
                 </div>
               </div>
 
               {/* Form */}
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
                 className="bg-white rounded-[3rem] shadow-3xl p-10 md:p-16 border border-[#ede3da]"
               >
                 <h2 className="text-3xl font-serif mb-10 text-[#2d1b10]">Send a Request</h2>
-                
+
                 {submitted ? (
                   <div className="h-full flex flex-col items-center justify-center text-center space-y-8 py-20">
                     <div className="w-24 h-24 bg-[#f7f1eb] text-[#2d1b10] rounded-full flex items-center justify-center shadow-xl">
@@ -87,16 +95,37 @@ const Contact: React.FC = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
                       <div className="space-y-3">
                         <label className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078]">Full Name</label>
-                        <input required type="text" className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-2xl px-8 py-5 outline-none focus:ring-1 focus:ring-[#2d1b10] font-light" placeholder="John Doe" />
+                        <input
+                          required
+                          type="text"
+                          value={name}
+                          onChange={(e) => setName(e.target.value)}
+                          className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-2xl px-8 py-5 outline-none focus:ring-1 focus:ring-[#2d1b10] font-light"
+                          placeholder="John Doe"
+                        />
                       </div>
                       <div className="space-y-3">
-                        <label className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078]">Email</label>
-                        <input required type="email" className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-2xl px-8 py-5 outline-none focus:ring-1 focus:ring-[#2d1b10] font-light" placeholder="hello@example.com" />
+                        <label className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078]">Phone Number</label>
+                        <input
+                          required
+                          type="tel"
+                          value={phone}
+                          onChange={(e) => setPhone(e.target.value)}
+                          className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-2xl px-8 py-5 outline-none focus:ring-1 focus:ring-[#2d1b10] font-light"
+                          placeholder="+94 7X XXX XXXX"
+                        />
                       </div>
                     </div>
                     <div className="space-y-3">
                       <label className="text-[10px] font-bold uppercase tracking-[0.4em] text-[#a89078]">Message</label>
-                      <textarea required rows={5} className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-3xl px-8 py-6 outline-none focus:ring-1 focus:ring-[#2d1b10] resize-none font-light" placeholder="How can we assist your beauty journey?"></textarea>
+                      <textarea
+                        required
+                        rows={5}
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className="w-full bg-[#fcfaf7] border border-[#ede3da] rounded-3xl px-8 py-6 outline-none focus:ring-1 focus:ring-[#2d1b10] resize-none font-light"
+                        placeholder="How can we assist your beauty journey?"
+                      ></textarea>
                     </div>
                     <button type="submit" className="w-full bg-[#2d1b10] text-white py-6 rounded-2xl font-bold uppercase tracking-[0.3em] text-[11px] flex items-center justify-center gap-4 hover:bg-[#3d2b1f] transition-all shadow-2xl active:scale-95">
                       Dispatch Message <Send size={18} strokeWidth={1.5} />

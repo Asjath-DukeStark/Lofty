@@ -24,33 +24,27 @@ const SplashIntro = ({ onComplete }: { onComplete: () => void }) => {
   return (
     <motion.div
       initial={{ opacity: 1 }}
-      exit={{ 
-        y: "-100%", 
-        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] } 
+      exit={{
+        y: "-100%",
+        transition: { duration: 0.8, ease: [0.76, 0, 0.24, 1] }
       }}
       className="fixed inset-0 z-[1000] bg-[#2d1b10] flex flex-col items-center justify-center overflow-hidden"
     >
       <div className="relative flex flex-col items-center mb-8">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1.5, ease: [0.16, 1, 0.3, 1] }}
-          className="mb-12"
+          className="mb-12 relative"
         >
-          <svg width="120" height="120" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <motion.circle 
-              initial={{ pathLength: 0 }}
-              animate={{ pathLength: 1 }}
-              transition={{ duration: 2, ease: "easeInOut" }}
-              cx="50" cy="50" r="45" stroke="#a89078" strokeWidth="1" 
+          <div className="relative">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+              className="absolute inset-[-20px] border border-[#a89078]/20 rounded-full"
             />
-            <motion.path 
-              initial={{ opacity: 0, scale: 0 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.8, duration: 1.2, ease: "easeOut" }}
-              d="M50 20L54 46L80 50L54 54L50 80L46 54L20 50L46 46L50 20Z" fill="#a89078" 
-            />
-          </svg>
+            <img src="/images/Loty logo.jpeg" alt="Lofty" className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover relative z-10 shadow-2xl" />
+          </div>
         </motion.div>
 
         <div className="relative overflow-hidden mb-6">
@@ -63,7 +57,7 @@ const SplashIntro = ({ onComplete }: { onComplete: () => void }) => {
             <span>LOFTY</span>
             <span className="italic font-light opacity-60">BEAUTY</span>
           </motion.div>
-          <motion.div 
+          <motion.div
             initial={{ x: "-100%" }}
             animate={{ x: "100%" }}
             transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
@@ -71,7 +65,7 @@ const SplashIntro = ({ onComplete }: { onComplete: () => void }) => {
           />
         </div>
       </div>
-      
+
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
@@ -100,17 +94,17 @@ const PageShutter = () => {
         className="fixed inset-0 z-[999] bg-[#2d1b10] pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0 }}
-        exit={{ 
-          opacity: 1, 
-          transition: { duration: 0.3, ease: "easeInOut" } 
+        exit={{
+          opacity: 1,
+          transition: { duration: 0.3, ease: "easeInOut" }
         }}
       />
       <motion.div
         className="fixed inset-0 z-[999] bg-[#2d1b10] pointer-events-none"
         initial={{ scaleY: 1 }}
-        animate={{ 
-          scaleY: 0, 
-          transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] } 
+        animate={{
+          scaleY: 0,
+          transition: { duration: 0.5, ease: [0.76, 0, 0.24, 1] }
         }}
         exit={{ scaleY: 0 }}
         style={{ originY: 0 }}
@@ -121,7 +115,7 @@ const PageShutter = () => {
 
 const AnimatedRoutes = () => {
   const location = useLocation();
-  
+
   return (
     <AnimatePresence mode="wait">
       <motion.div
@@ -154,7 +148,7 @@ const App: React.FC = () => {
       <AnimatePresence>
         {initialLoad && <SplashIntro onComplete={() => setInitialLoad(false)} />}
       </AnimatePresence>
-      
+
       <div className={`flex flex-col min-h-screen bg-[#fcfaf7] selection:bg-[#3d2b1f] selection:text-[#fcfaf7] transition-opacity duration-700 ${initialLoad ? 'opacity-0' : 'opacity-100'}`}>
         <Navbar />
         <main className="flex-grow pb-32 lg:pb-0">
@@ -162,7 +156,7 @@ const App: React.FC = () => {
         </main>
         <MobileBottomNav />
         <Footer />
-        
+
         {/* Subtle vignette for depth */}
         <div className="fixed inset-0 pointer-events-none z-[51] shadow-[inset_0_0_120px_rgba(45,27,16,0.04)]" />
       </div>
