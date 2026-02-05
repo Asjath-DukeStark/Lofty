@@ -3,100 +3,337 @@ import React from 'react';
 import { Service, ServiceCategory, Testimonial } from './types';
 
 export const SERVICES: Service[] = [
-  // --- FACIAL & SKIN ---
+  // --- SKIN CARE SERVICES ---
   {
-    id: 'f1',
-    title: 'Clear Skin Facial',
-    description: 'A deep cleaning treatment that makes your skin look bright and fresh. Perfect for getting a healthy glow before a big event.',
-    price: 'LKR 9500',
+    id: 's1',
+    title: 'Clean Up',
+    description: 'A quick yet effective deep cleansing treatment to refresh your skin.',
+    price: 'LKR 3000',
+    duration: '30 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care_premium.png'
+  },
+  {
+    id: 's2',
+    title: 'Normal Facial',
+    description: 'A classic facial treatment to maintain healthy and glowing skin.',
+    price: 'LKR 3600',
+    duration: '45 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care_premium.png'
+  },
+  {
+    id: 's3',
+    title: 'Whitening Facial',
+    description: 'Designed to brighten your complexion and even out skin tone.',
+    price: 'LKR 4500',
+    duration: '80 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care.png',
+    isPopular: true
+  },
+  {
+    id: 's4',
+    title: 'High-Frequency Special Facial',
+    description: 'Advanced treatment using high-frequency technology for skin rejuvenation.',
+    price: 'LKR 4000',
+    duration: '45 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care_premium.png'
+  },
+  {
+    id: 's5',
+    title: 'Pimple Treatment',
+    description: 'Targeted care to reduce breakouts and soothe irritated skin.',
+    price: 'LKR 5000',
     duration: '60 min',
-    category: ServiceCategory.FACIAL,
-    image: '/images/facial-skin.jpg',
-    isPopular: true
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care_premium.png'
   },
   {
-    id: 'f2',
-    title: 'Deep Hydration Treatment',
-    description: 'A relaxing facial that adds moisture back into your skin. Your face will feel soft, smooth, and very hydrated.',
-    price: 'LKR 11000',
-    duration: '75 min',
-    category: ServiceCategory.FACIAL,
-    image: '/images/deep-hydration.jpg'
+    id: 's6',
+    title: 'Acne Treatment (High-Frequency)',
+    description: 'Professional acne care combined with high-frequency technology for optimal results.',
+    price: 'LKR 5000',
+    duration: '60 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care_premium.png'
   },
   {
-    id: 'f3',
-    title: 'Luxury Gold Facial',
-    description: 'Our premium anti-aging treatment using real gold leaf and pearl extract to lift your skin and give you a beautiful glow.',
-    price: 'LKR 22500',
+    id: 's7',
+    title: 'Pigmentation Treatment',
+    description: 'Helps reduce the appearance of dark spots and uneven pigmentation.',
+    price: 'LKR 5500',
+    duration: '60 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care_premium.png'
+  },
+  {
+    id: 's8',
+    title: 'Galvanic Treatment',
+    description: 'Uses galvanic current to deeply nourish and hydrate the skin layers.',
+    price: 'LKR 6500',
+    duration: '60 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care_premium.png'
+  },
+  {
+    id: 's9',
+    title: 'Dark Spot Removal',
+    description: 'Precision treatment focused on eliminating stubborn dark spots.',
+    price: 'LKR 4500',
+    duration: '30 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/skin_care_premium.png'
+  },
+  {
+    id: 's10',
+    title: 'Gold Facial',
+    description: 'Indulge in luxury with our gold-infused anti-aging treatment.',
+    price: 'LKR 6000',
     duration: '90 min',
-    category: ServiceCategory.FACIAL,
-    image: '/images/luxury-gold.jpg',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/gold_facial.png',
     isPopular: true
+  },
+  {
+    id: 's11',
+    title: 'Pearl Facial',
+    description: 'Achieve a luminous, iridescent glow with pure pearl extracts.',
+    price: 'LKR 7000',
+    duration: '90 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/gold_facial.png'
+  },
+  {
+    id: 's12',
+    title: 'Silver Facial',
+    description: 'A cooling and detoxifying facial for a clear and balanced complexion.',
+    price: 'LKR 7000',
+    duration: '90 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/gold_facial.png'
   },
 
-  // --- MAKEUP ARTISTRY ---
-  {
-    id: 'm1',
-    title: 'Special Occasion Makeup',
-    description: 'Professional makeup for a night out or a party. We focus on showing off your natural beauty with a clean, modern look.',
-    price: 'LKR 8500',
-    duration: '60 min',
-    category: ServiceCategory.MAKEUP,
-    image: '/images/special-occasion.jpg',
-    isPopular: true
-  },
-  {
-    id: 'm2',
-    title: 'Full Glam Makeup',
-    description: 'Heavy or detailed makeup for big events like galas or photoshoots. Designed to look perfect in photos and last all night.',
-    price: 'LKR 14000',
-    duration: '90 min',
-    category: ServiceCategory.MAKEUP,
-    image: '/images/full-glam.jpg'
-  },
-
-  // --- HAIR DESIGN ---
+  // --- HAIR CARE SERVICES ---
   {
     id: 'h1',
-    title: 'Signature Haircut',
-    description: 'A professional haircut designed specifically for your face shape. Includes a relaxing scalp massage.',
-    price: 'LKR 7500',
-    duration: '75 min',
+    title: 'Hair Cutting (All Types)',
+    description: 'Expert styling tailored to your face shape and personal style.',
+    price: 'LKR 300 - 1800',
+    duration: 'Varies',
     category: ServiceCategory.HAIR,
-    image: '/images/signature-haircut.jpg',
+    image: '/images/new_services/hair_care.png',
     isPopular: true
   },
   {
     id: 'h2',
-    title: 'Soft Curls Treatment',
-    description: 'A hair styling service that gives you natural-looking, bouncy curls that move perfectly and look soft.',
-    price: 'LKR 18000',
-    duration: '180 min',
+    title: 'Shampoo & Conditioner',
+    description: 'Deep cleansing and intense conditioning for silky smooth hair.',
+    price: 'LKR 3500',
+    duration: '45 min',
     category: ServiceCategory.HAIR,
-    image: '/images/soft-curls.jpg'
+    image: '/images/new_services/hair_care_premium.png'
+  },
+  {
+    id: 'h3',
+    title: 'Dandruff Treatment',
+    description: 'Targeted scalp care to eliminate dandruff and soothe itching.',
+    price: 'LKR 5000',
+    duration: '90 min',
+    category: ServiceCategory.HAIR,
+    image: '/images/new_services/hair_care_premium.png'
+  },
+  {
+    id: 'h4',
+    title: 'Hot Oil Massage',
+    description: 'A traditional and relaxing treatment to nourish roots and improve circulation.',
+    price: 'LKR 5000',
+    duration: '90 min',
+    category: ServiceCategory.HAIR,
+    image: '/images/new_services/hair_care_premium.png'
+  },
+  {
+    id: 'h5',
+    title: 'Hair Spa',
+    description: 'The ultimate rejuvenation for tired and damaged hair.',
+    price: 'LKR 5000',
+    duration: '60 min',
+    category: ServiceCategory.HAIR,
+    image: '/images/new_services/hair_care_premium.png',
+    isPopular: true
+  },
+  {
+    id: 'h6',
+    title: 'Henna Treatment',
+    description: 'Natural coloring and conditioning for healthy, vibrant hair.',
+    price: 'LKR 5500',
+    duration: '120 min',
+    category: ServiceCategory.HAIR,
+    image: '/images/new_services/hair_care_premium.png'
+  },
+  {
+    id: 'h7',
+    title: 'Hair Coloring',
+    description: 'Professional color application, from subtle highlights to bold transformations.',
+    price: 'LKR 4000 - 9000',
+    duration: '120 min',
+    category: ServiceCategory.HAIR,
+    image: '/images/new_services/hair_care_premium.png'
+  },
+  {
+    id: 'h8',
+    title: 'Perming',
+    description: 'Add long-lasting volume and curls with our expert perming service.',
+    price: 'LKR 8000',
+    duration: '150 min',
+    category: ServiceCategory.HAIR,
+    image: '/images/new_services/hair_care_premium.png'
+  },
+  {
+    id: 'h9',
+    title: 'Hair Ironing',
+    description: 'Achieve sleek, perfectly straight hair with a professional finish.',
+    price: 'LKR 18000 - 25000',
+    duration: '240 min',
+    category: ServiceCategory.HAIR,
+    image: '/images/new_services/hair_care_premium.png'
   },
 
-  // --- NAILS & HANDS ---
+  // --- HAND & FOOT CARE ---
   {
     id: 'n1',
-    title: 'Classic Clean Manicure',
-    description: 'Elegant and clean nails. Includes cuticle care, hand scrub, and a perfect finish in your favorite color.',
-    price: 'LKR 5500',
-    duration: '60 min',
-    category: ServiceCategory.NAILS,
-    image: '/images/classic-manicure.jpg'
+    title: 'Manicure',
+    description: 'Elegant hand care including shape, cuticle work, and perfect polish.',
+    price: 'LKR 550',
+    duration: '45 min',
+    category: ServiceCategory.HAND_FOOT,
+    image: '/images/new_services/hand_foot_premium.png'
+  },
+  {
+    id: 'n2',
+    title: 'Pedicure',
+    description: 'The ultimate foot pamper including soak, scrub, and artistic finish.',
+    price: 'LKR 6500',
+    duration: '45 min',
+    category: ServiceCategory.HAND_FOOT,
+    image: '/images/new_services/hand_foot_premium.png'
   },
 
-  // --- BRIDAL ---
+  // --- MAKEUP SERVICES ---
+  {
+    id: 'm1',
+    title: 'Normal Makeup',
+    description: 'A fresh and clean look for your everyday special moments.',
+    price: 'LKR 3000',
+    duration: '45 min',
+    category: ServiceCategory.MAKEUP,
+    image: '/images/new_services/makeup_premium.png'
+  },
+  {
+    id: 'm2',
+    title: '3 Cultural Makeup',
+    description: 'Exquisite makeup styled according to your unique cultural heritage.',
+    price: 'Price on Request',
+    duration: 'Varies',
+    category: ServiceCategory.MAKEUP,
+    image: '/images/new_services/makeup_premium.png'
+  },
+  {
+    id: 'm3',
+    title: 'Mehndi Makeup',
+    description: 'Vibrant and festive makeup perfect for your Mehndi celebrations.',
+    price: 'LKR 16000',
+    duration: '120 min',
+    category: ServiceCategory.MAKEUP,
+    image: '/images/new_services/makeup_premium.png'
+  },
+  {
+    id: 'm4',
+    title: 'Wedding Makeup',
+    description: 'A timeless and breathtaking look for your most special day.',
+    price: 'LKR 22000',
+    duration: '210 min',
+    category: ServiceCategory.MAKEUP,
+    image: '/images/new_services/makeup_premium.png',
+    isPopular: true
+  },
+  {
+    id: 'm5',
+    title: 'Walima Makeup',
+    description: 'Elegant and sophisticated makeup for your Walima reception.',
+    price: 'LKR 18000',
+    duration: '150 min',
+    category: ServiceCategory.MAKEUP,
+    image: '/images/new_services/makeup_premium.png'
+  },
+
+  // --- BRIDAL & WEDDING SERVICES ---
   {
     id: 'b1',
-    title: 'Full Wedding Package',
-    description: 'Everything you need for your big day. Includes hair and makeup trials and full styling on your wedding day.',
-    price: 'LKR 55000',
-    duration: '300 min',
+    title: 'Rental Bridal Dress & Bouquet',
+    description: 'A curated selection of premium bridal gowns and matching floral arrangements.',
+    price: 'Price on Request',
+    duration: 'Varies',
     category: ServiceCategory.BRIDAL,
-    image: '/images/wedding-package.jpg',
+    image: '/images/new_services/makeup_premium.png'
+  },
+  {
+    id: 'b2',
+    title: 'Saree Wearing (7 Methods)',
+    description: 'Professional saree draping in seven elegant traditional and modern styles.',
+    price: 'LKR 3000',
+    duration: '60 min',
+    category: ServiceCategory.BRIDAL,
+    image: '/images/new_services/makeup_premium.png'
+  },
+  {
+    id: 'b3',
+    title: 'Customised Bouquet',
+    description: 'Bespoke floral arrangements tailored to your wedding theme.',
+    price: 'LKR 5000 - 9000',
+    duration: 'Varies',
+    category: ServiceCategory.BRIDAL,
+    image: '/images/new_services/wedding_cake.png'
+  },
+  {
+    id: 'b4',
+    title: 'Bridal Car Decoration',
+    description: 'Elegant and festive floral styling for your bridal car.',
+    price: 'LKR 10000 - 18000',
+    duration: 'Varies',
+    category: ServiceCategory.BRIDAL,
+    image: '/images/new_services/wedding_cake.png'
+  },
+  {
+    id: 'b5',
+    title: 'Wedding Cake',
+    description: 'Designer wedding cakes that taste as beautiful as they look.',
+    price: 'LKR 3000 - 20000',
+    duration: 'Varies',
+    category: ServiceCategory.BRIDAL,
+    image: '/images/new_services/wedding_cake.png',
     isPopular: true
+  },
+
+  // --- MARAVA SERVICES ---
+  {
+    id: 'v1',
+    title: 'Marava (Box Making)',
+    description: 'Exquisite traditional Marava boxes, custom-made with intricate detail.',
+    price: 'LKR 8000 - 100000',
+    duration: 'Varies',
+    category: ServiceCategory.MARAVA,
+    image: '/images/new_services/marava.png'
+  },
+  {
+    id: 'v2',
+    title: 'Marava Rental',
+    description: 'A selection of premium Marava boxes available for your ceremony.',
+    price: 'LKR 500 - 5000',
+    duration: 'Varies',
+    category: ServiceCategory.MARAVA,
+    image: '/images/new_services/marava.png'
   }
 ];
 

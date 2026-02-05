@@ -11,12 +11,12 @@ export interface Service {
 }
 
 export enum ServiceCategory {
-  FACIAL = 'Facial & Skin',
-  MAKEUP = 'Makeup Artistry',
-  HAIR = 'Hair Design',
-  NAILS = 'Nail & Hand',
-  GROOMING = 'Grooming & Waxing',
-  BRIDAL = 'Bridal & Events'
+  SKIN = 'Skin Care',
+  HAIR = 'Hair Care',
+  HAND_FOOT = 'Hand & Foot Care',
+  MAKEUP = 'Makeup Services',
+  BRIDAL = 'Bridal & Wedding',
+  MARAVA = 'Marava Services'
 }
 
 export interface Testimonial {

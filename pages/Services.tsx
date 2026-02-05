@@ -49,9 +49,9 @@ const itemVariants: Variants = {
 
 const PRICE_RANGES = [
   { label: 'All', value: 'all' },
-  { label: '< LKR 10000', value: 'under-10000' },
-  { label: 'LKR 10k - 20k', value: '10000-20000' },
-  { label: '> LKR 20000', value: 'over-20000' }
+  { label: '< LKR 5,000', value: 'under-5000' },
+  { label: 'LKR 5k - 15k', value: '5000-15000' },
+  { label: '> LKR 15,000', value: 'over-15000' }
 ];
 
 const Services: React.FC = () => {
@@ -83,12 +83,20 @@ const Services: React.FC = () => {
       // Popularity Match
       const matchesPopular = !onlyPopular || s.isPopular;
 
-      // Price Match
-      const numericPrice = parseInt(s.price.replace('LKR', '').trim());
+      // Robust Price Parsing
+      let numericPrice = 0;
+      if (s.price.toLowerCase().includes('request')) {
+        numericPrice = 999999; // Treat as high for filtering purposes
+      } else {
+        // Handle ranges like "300 - 1800" by taking the lower bound
+        const basePrice = s.price.split('-')[0].replace(/[^0-9]/g, '');
+        numericPrice = parseInt(basePrice) || 0;
+      }
+
       let matchesPrice = true;
-      if (priceFilter === 'under-10000') matchesPrice = numericPrice < 10000;
-      else if (priceFilter === '10000-20000') matchesPrice = numericPrice >= 10000 && numericPrice <= 20000;
-      else if (priceFilter === 'over-20000') matchesPrice = numericPrice > 20000;
+      if (priceFilter === 'under-5000') matchesPrice = numericPrice < 5000;
+      else if (priceFilter === '5000-15000') matchesPrice = numericPrice >= 5000 && numericPrice <= 15000;
+      else if (priceFilter === 'over-15000') matchesPrice = numericPrice > 15000;
 
       return matchesCategory && matchesSearch && matchesPopular && matchesPrice;
     });
@@ -255,8 +263,8 @@ const Services: React.FC = () => {
                           key={range.value}
                           onClick={() => setPriceFilter(range.value)}
                           className={`px-4 py-2 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-widest transition-all whitespace-nowrap border ${priceFilter === range.value
-                              ? 'bg-[#a89078] text-white border-[#a89078]'
-                              : 'bg-white text-[#a89078] border-[#ede3da] hover:border-[#a89078]'
+                            ? 'bg-[#a89078] text-white border-[#a89078]'
+                            : 'bg-white text-[#a89078] border-[#ede3da] hover:border-[#a89078]'
                             }`}
                         >
                           {range.label}
@@ -269,8 +277,8 @@ const Services: React.FC = () => {
                     <button
                       onClick={() => setOnlyPopular(!onlyPopular)}
                       className={`flex items-center gap-2.5 px-6 py-2 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-[0.2em] transition-all border ${onlyPopular
-                          ? 'bg-[#2d1b10] text-white border-[#2d1b10]'
-                          : 'bg-white text-[#2d1b10] border-[#ede3da] hover:border-[#2d1b10]'
+                        ? 'bg-[#2d1b10] text-white border-[#2d1b10]'
+                        : 'bg-white text-[#2d1b10] border-[#ede3da] hover:border-[#2d1b10]'
                         }`}
                     >
                       <Sparkles size={12} className={onlyPopular ? 'text-white' : 'text-[#a89078]'} />
