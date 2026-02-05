@@ -123,6 +123,15 @@ export const SERVICES: Service[] = [
     category: ServiceCategory.SKIN,
     image: '/images/new_services/s12.jpg'
   },
+  {
+    id: 's13',
+    title: 'Hydra facial',
+    description: 'Advanced medical-grade treatment that cleanses, detoxifies, exfoliates, and hydrates.',
+    price: 'LKR 13000',
+    duration: '120 min',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/s13.jpg'
+  },
 
   // --- HAIR CARE SERVICES ---
   {
