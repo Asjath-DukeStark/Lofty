@@ -5,6 +5,15 @@ import { Service, ServiceCategory, Testimonial } from './types';
 export const SERVICES: Service[] = [
   // --- SKIN CARE SERVICES ---
   {
+    id: 's0',
+    title: 'Skin Care Advice',
+    description: 'Expert consultation and personalized advice for your skincare routine.',
+    price: 'Free',
+    duration: '-',
+    category: ServiceCategory.SKIN,
+    image: '/images/new_services/s0.png'
+  },
+  {
     id: 's1',
     title: 'Clean Up',
     description: 'A quick yet effective deep cleansing treatment to refresh your skin.',
@@ -121,7 +130,7 @@ export const SERVICES: Service[] = [
     title: 'Hair Cutting (All Types)',
     description: 'Expert styling tailored to your face shape and personal style.',
     price: 'LKR 300 - 1800',
-    duration: 'Varies',
+    duration: '-',
     category: ServiceCategory.HAIR,
     image: '/images/new_services/h1.png',
     isPopular: true
@@ -183,8 +192,8 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'h8',
-    title: 'Perming',
-    description: 'Add long-lasting volume and curls with our expert perming service.',
+    title: 'Permin',
+    description: 'Add long-lasting volume and curls with our expert permin service.',
     price: 'LKR 8000',
     duration: '150 min',
     category: ServiceCategory.HAIR,
@@ -205,7 +214,7 @@ export const SERVICES: Service[] = [
     id: 'n1',
     title: 'Manicure',
     description: 'Elegant hand care including shape, cuticle work, and perfect polish.',
-    price: 'LKR 550',
+    price: 'LKR 5500',
     duration: '45 min',
     category: ServiceCategory.HAND_FOOT,
     image: '/images/new_services/n1.png'
@@ -232,10 +241,10 @@ export const SERVICES: Service[] = [
   },
   {
     id: 'm2',
-    title: '3 Cultural Makeup',
-    description: 'Exquisite makeup styled according to your unique cultural heritage.',
-    price: 'Price on Request',
-    duration: 'Varies',
+    title: 'Air Brush Makeup',
+    description: 'High-definition, long-lasting makeup application for a flawless finish.',
+    price: 'LKR 25000',
+    duration: '180 min',
     category: ServiceCategory.MAKEUP,
     image: '/images/new_services/m2.png'
   },
@@ -253,7 +262,7 @@ export const SERVICES: Service[] = [
     title: 'Wedding Makeup',
     description: 'A timeless and breathtaking look for your most special day.',
     price: 'LKR 22000',
-    duration: '210 min',
+    duration: '180 min',
     category: ServiceCategory.MAKEUP,
     image: '/images/new_services/m4.png',
     isPopular: true
@@ -273,8 +282,8 @@ export const SERVICES: Service[] = [
     id: 'b1',
     title: 'Rental Bridal Dress & Bouquet',
     description: 'A curated selection of premium bridal gowns and matching floral arrangements.',
-    price: 'Price on Request',
-    duration: 'Varies',
+    price: 'Available',
+    duration: '-',
     category: ServiceCategory.BRIDAL,
     image: '/images/new_services/b1.png'
   },
@@ -292,7 +301,7 @@ export const SERVICES: Service[] = [
     title: 'Customised Bouquet',
     description: 'Bespoke floral arrangements tailored to your wedding theme.',
     price: 'LKR 5000 - 9000',
-    duration: 'Varies',
+    duration: '-',
     category: ServiceCategory.BRIDAL,
     image: '/images/new_services/b3.png'
   },
@@ -300,8 +309,8 @@ export const SERVICES: Service[] = [
     id: 'b4',
     title: 'Bridal Car Decoration',
     description: 'Elegant and festive floral styling for your bridal car.',
-    price: 'LKR 10000 - 18000',
-    duration: 'Varies',
+    price: 'LKR 1000 - 18000',
+    duration: '-',
     category: ServiceCategory.BRIDAL,
     image: '/images/new_services/b4.png'
   },
@@ -310,7 +319,7 @@ export const SERVICES: Service[] = [
     title: 'Wedding Cake',
     description: 'Designer wedding cakes that taste as beautiful as they look.',
     price: 'LKR 3000 - 20000',
-    duration: 'Varies',
+    duration: '-',
     category: ServiceCategory.BRIDAL,
     image: '/images/new_services/b5.png',
     isPopular: true
@@ -322,7 +331,7 @@ export const SERVICES: Service[] = [
     title: 'Marava (Box Making)',
     description: 'Exquisite traditional Marava boxes, custom-made with intricate detail.',
     price: 'LKR 8000 - 100000',
-    duration: 'Varies',
+    duration: '-',
     category: ServiceCategory.MARAVA,
     image: '/images/new_services/v1.png'
   },
@@ -331,7 +340,7 @@ export const SERVICES: Service[] = [
     title: 'Marava Rental',
     description: 'A selection of premium Marava boxes available for your ceremony.',
     price: 'LKR 500 - 5000',
-    duration: 'Varies',
+    duration: '-',
     category: ServiceCategory.MARAVA,
     image: '/images/new_services/v2.png'
   }
