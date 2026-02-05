@@ -11,7 +11,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 3000',
     duration: '30 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care_premium.png'
+    image: '/images/new_services/s1.png'
   },
   {
     id: 's2',
@@ -20,7 +20,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 3600',
     duration: '45 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care_premium.png'
+    image: '/images/new_services/s2.png'
   },
   {
     id: 's3',
@@ -29,7 +29,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 4500',
     duration: '80 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care.png',
+    image: '/images/new_services/s3.png',
     isPopular: true
   },
   {
@@ -39,7 +39,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 4000',
     duration: '45 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care_premium.png'
+    image: '/images/new_services/s4.png'
   },
   {
     id: 's5',
@@ -48,7 +48,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5000',
     duration: '60 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care_premium.png'
+    image: '/images/new_services/s5.png'
   },
   {
     id: 's6',
@@ -57,7 +57,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5000',
     duration: '60 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care_premium.png'
+    image: '/images/new_services/s6.png'
   },
   {
     id: 's7',
@@ -66,7 +66,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5500',
     duration: '60 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care_premium.png'
+    image: '/images/new_services/s7.png'
   },
   {
     id: 's8',
@@ -75,7 +75,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 6500',
     duration: '60 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care_premium.png'
+    image: '/images/new_services/s8.png'
   },
   {
     id: 's9',
@@ -84,7 +84,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 4500',
     duration: '30 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/skin_care_premium.png'
+    image: '/images/new_services/s9.png'
   },
   {
     id: 's10',
@@ -93,7 +93,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 6000',
     duration: '90 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/gold_facial.png',
+    image: '/images/new_services/s10.png',
     isPopular: true
   },
   {
@@ -103,7 +103,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 7000',
     duration: '90 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/gold_facial.png'
+    image: '/images/new_services/s11.png'
   },
   {
     id: 's12',
@@ -112,7 +112,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 7000',
     duration: '90 min',
     category: ServiceCategory.SKIN,
-    image: '/images/new_services/gold_facial.png'
+    image: '/images/new_services/s12.png'
   },
 
   // --- HAIR CARE SERVICES ---
@@ -123,7 +123,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 300 - 1800',
     duration: 'Varies',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care.png',
+    image: '/images/new_services/h1.png',
     isPopular: true
   },
   {
@@ -133,7 +133,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 3500',
     duration: '45 min',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care_premium.png'
+    image: '/images/new_services/h2.png'
   },
   {
     id: 'h3',
@@ -142,7 +142,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5000',
     duration: '90 min',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care_premium.png'
+    image: '/images/new_services/h3.png'
   },
   {
     id: 'h4',
@@ -151,7 +151,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5000',
     duration: '90 min',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care_premium.png'
+    image: '/images/new_services/h4.png'
   },
   {
     id: 'h5',
@@ -160,7 +160,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5000',
     duration: '60 min',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care_premium.png',
+    image: '/images/new_services/h5.png',
     isPopular: true
   },
   {
@@ -170,7 +170,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5500',
     duration: '120 min',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care_premium.png'
+    image: '/images/new_services/h6.png'
   },
   {
     id: 'h7',
@@ -179,7 +179,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 4000 - 9000',
     duration: '120 min',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care_premium.png'
+    image: '/images/new_services/h7.png'
   },
   {
     id: 'h8',
@@ -188,7 +188,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 8000',
     duration: '150 min',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care_premium.png'
+    image: '/images/new_services/h8.png'
   },
   {
     id: 'h9',
@@ -197,7 +197,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 18000 - 25000',
     duration: '240 min',
     category: ServiceCategory.HAIR,
-    image: '/images/new_services/hair_care_premium.png'
+    image: '/images/new_services/h9.png'
   },
 
   // --- HAND & FOOT CARE ---
@@ -208,7 +208,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 550',
     duration: '45 min',
     category: ServiceCategory.HAND_FOOT,
-    image: '/images/new_services/hand_foot_premium.png'
+    image: '/images/new_services/n1.png'
   },
   {
     id: 'n2',
@@ -217,7 +217,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 6500',
     duration: '45 min',
     category: ServiceCategory.HAND_FOOT,
-    image: '/images/new_services/hand_foot_premium.png'
+    image: '/images/new_services/n2.png'
   },
 
   // --- MAKEUP SERVICES ---
@@ -228,7 +228,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 3000',
     duration: '45 min',
     category: ServiceCategory.MAKEUP,
-    image: '/images/new_services/makeup_premium.png'
+    image: '/images/new_services/m1.png'
   },
   {
     id: 'm2',
@@ -237,7 +237,7 @@ export const SERVICES: Service[] = [
     price: 'Price on Request',
     duration: 'Varies',
     category: ServiceCategory.MAKEUP,
-    image: '/images/new_services/makeup_premium.png'
+    image: '/images/new_services/m2.png'
   },
   {
     id: 'm3',
@@ -246,7 +246,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 16000',
     duration: '120 min',
     category: ServiceCategory.MAKEUP,
-    image: '/images/new_services/makeup_premium.png'
+    image: '/images/new_services/m3.png'
   },
   {
     id: 'm4',
@@ -255,7 +255,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 22000',
     duration: '210 min',
     category: ServiceCategory.MAKEUP,
-    image: '/images/new_services/makeup_premium.png',
+    image: '/images/new_services/m4.png',
     isPopular: true
   },
   {
@@ -265,7 +265,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 18000',
     duration: '150 min',
     category: ServiceCategory.MAKEUP,
-    image: '/images/new_services/makeup_premium.png'
+    image: '/images/new_services/m5.png'
   },
 
   // --- BRIDAL & WEDDING SERVICES ---
@@ -276,7 +276,7 @@ export const SERVICES: Service[] = [
     price: 'Price on Request',
     duration: 'Varies',
     category: ServiceCategory.BRIDAL,
-    image: '/images/new_services/makeup_premium.png'
+    image: '/images/new_services/b1.png'
   },
   {
     id: 'b2',
@@ -285,7 +285,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 3000',
     duration: '60 min',
     category: ServiceCategory.BRIDAL,
-    image: '/images/new_services/makeup_premium.png'
+    image: '/images/new_services/b2.png'
   },
   {
     id: 'b3',
@@ -294,7 +294,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 5000 - 9000',
     duration: 'Varies',
     category: ServiceCategory.BRIDAL,
-    image: '/images/new_services/wedding_cake.png'
+    image: '/images/new_services/b3.png'
   },
   {
     id: 'b4',
@@ -303,7 +303,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 10000 - 18000',
     duration: 'Varies',
     category: ServiceCategory.BRIDAL,
-    image: '/images/new_services/wedding_cake.png'
+    image: '/images/new_services/b4.png'
   },
   {
     id: 'b5',
@@ -312,7 +312,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 3000 - 20000',
     duration: 'Varies',
     category: ServiceCategory.BRIDAL,
-    image: '/images/new_services/wedding_cake.png',
+    image: '/images/new_services/b5.png',
     isPopular: true
   },
 
@@ -324,7 +324,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 8000 - 100000',
     duration: 'Varies',
     category: ServiceCategory.MARAVA,
-    image: '/images/new_services/marava.png'
+    image: '/images/new_services/v1.png'
   },
   {
     id: 'v2',
@@ -333,7 +333,7 @@ export const SERVICES: Service[] = [
     price: 'LKR 500 - 5000',
     duration: 'Varies',
     category: ServiceCategory.MARAVA,
-    image: '/images/new_services/marava.png'
+    image: '/images/new_services/v2.png'
   }
 ];
 
