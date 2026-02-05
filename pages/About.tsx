@@ -18,9 +18,9 @@ const About: React.FC = () => {
         {isInitializing ? (
           <PageLoader key="loader" label="Our Story" />
         ) : (
-          <motion.div 
+          <motion.div
             key="content"
-            initial={{ opacity: 0 }} 
+            initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1 }}
           >
@@ -30,14 +30,14 @@ const About: React.FC = () => {
                 <img src="https://images.unsplash.com/photo-1540555700478-4be289fbecef?q=80&w=2070&auto=format&fit=crop" className="w-full h-full object-cover" alt="" />
               </div>
               <div className="max-w-7xl mx-auto px-8 text-center relative z-10">
-                <motion.span 
+                <motion.span
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   className="text-[#a89078] uppercase tracking-[0.6em] text-[11px] font-bold mb-10 block"
                 >
                   WHO WE ARE
                 </motion.span>
-                <motion.h1 
+                <motion.h1
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.2 }}
@@ -45,7 +45,7 @@ const About: React.FC = () => {
                 >
                   Our <span className="font-light">Story</span>
                 </motion.h1>
-                <motion.p 
+                <motion.p
                   initial={{ opacity: 0 }}
                   whileInView={{ opacity: 1 }}
                   transition={{ delay: 0.4 }}
@@ -58,20 +58,20 @@ const About: React.FC = () => {
 
             {/* Philosophy Main */}
             <section className="max-w-7xl mx-auto px-8 grid grid-cols-1 md:grid-cols-2 gap-32 items-center mb-48">
-              <motion.div 
+              <motion.div
                 initial={{ opacity: 0, scale: 0.95 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true }}
                 transition={{ duration: 1.2 }}
                 className="relative"
               >
-                <img 
-                  src="https://images.unsplash.com/photo-1614806687315-bb41b47a05e8?q=80&w=2070&auto=format&fit=crop" 
-                  alt="Spa Detail" 
+                <img
+                  src="/images/about_philosophy.jpg"
+                  alt="Spa Detail"
                   className="rounded-[4rem] shadow-3xl relative z-10"
                 />
               </motion.div>
-              
+
               <div className="space-y-16">
                 <motion.div initial={{ opacity: 0, x: 20 }} whileInView={{ opacity: 1, x: 0 }}>
                   <span className="text-[#a89078] uppercase tracking-[0.4em] text-[10px] font-bold mb-6 block">Our Goal</span>
