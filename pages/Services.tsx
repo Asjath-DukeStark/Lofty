@@ -1,4 +1,3 @@
-
 import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { SERVICES } from '../constants';
 import { ServiceCategory, Service } from '../types';
@@ -6,6 +5,7 @@ import { Clock, Tag, ChevronRight, SlidersHorizontal, Sparkle, X, ArrowRight, Ch
 import { motion, AnimatePresence, LayoutGroup, Variants } from 'framer-motion';
 import PageLoader from '../components/PageLoader';
 import { useNavigate } from 'react-router-dom';
+import ServiceModal from '../components/ServiceModal';
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -54,18 +54,17 @@ const PRICE_RANGES = [
   { label: '> LKR 15,000', value: 'over-15000' }
 ];
 
-// ... (rest of imports)
-
-
-// ... (variants remain the same)
-
 const Services: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | 'All'>('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [priceFilter, setPriceFilter] = useState('all');
   const [onlyPopular, setOnlyPopular] = useState(false);
   const [isFilterSticky, setIsFilterSticky] = useState(false);
+  const [showFilter, setShowFilter] = useState(true);
   const [isInitializing, setIsInitializing] = useState(true);
+  const lastScrollY = useRef(0);
+
+  const [selectedService, setSelectedService] = useState<Service | null>(null);
 
   const navigate = useNavigate();
   const scrollContainerRef = useRef<HTMLDivElement>(null);
@@ -111,7 +110,17 @@ const Services: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsFilterSticky(window.scrollY > 100);
+      const currentScrollY = window.scrollY;
+
+      // Determine if scrolling Down or Up
+      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
+        setShowFilter(false); // Hide on scroll down
+      } else {
+        setShowFilter(true); // Show on scroll up
+      }
+
+      setIsFilterSticky(currentScrollY > 100);
+      lastScrollY.current = currentScrollY;
     };
     window.addEventListener('scroll', handleScroll);
 
@@ -137,13 +146,8 @@ const Services: React.FC = () => {
     setOnlyPopular(false);
   };
 
-  const handleServiceClick = (slug: string) => {
-    if (slug) {
-      navigate(`/${slug}`);
-    } else {
-      // Fallback for services without slug (shouldn't happen with updated constants)
-      console.warn("Service missing slug");
-    }
+  const handleServiceClick = (service: Service) => {
+    setSelectedService(service);
   };
 
   return (
@@ -177,8 +181,7 @@ const Services: React.FC = () => {
             </section>
 
             {/* Filter & Search Section */}
-            <div className={`sticky top-[70px] md:top-[80px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'
-              }`}>
+            <div className={`sticky z-40 transition-all duration-500 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'} ${showFilter ? 'top-[70px] md:top-[80px]' : '-top-40'}`}>
               <div className="max-w-[1400px] mx-auto px-4 md:px-8 space-y-4">
 
                 {/* Search Bar */}
@@ -306,7 +309,7 @@ const Services: React.FC = () => {
                         exit="exit"
                       >
                         <motion.div
-                          onClick={() => handleServiceClick(service.slug || '')}
+                          onClick={() => handleServiceClick(service)}
                           whileHover={{ y: -8, transition: { duration: 0.4 } }}
                           whileTap={{ scale: 0.98 }}
                           className="group relative flex flex-col md:flex-row items-stretch bg-white rounded-3xl md:rounded-[3.5rem] p-3 md:p-10 border border-[#ede3da] hover:border-[#a89078]/40 transition-all duration-700 overflow-hidden shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(45,27,16,0.08)] cursor-pointer h-full"
@@ -387,6 +390,13 @@ const Services: React.FC = () => {
                 )}
               </AnimatePresence>
             </div>
+
+            <ServiceModal
+              service={selectedService}
+              isOpen={!!selectedService}
+              onClose={() => setSelectedService(null)}
+            />
+
           </motion.div>
         )}
       </AnimatePresence>

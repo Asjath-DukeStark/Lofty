@@ -44,7 +44,7 @@ function Resize-Image {
     }
 }
 
-$source = "public\images\Loty logo.jpeg"
+$source = "public\images\New Logo.png"
 $dest192 = "public\pwa-192x192.png"
 $dest512 = "public\pwa-512x512.png"
 

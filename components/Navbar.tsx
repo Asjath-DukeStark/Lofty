@@ -50,9 +50,9 @@ const Navbar: React.FC = () => {
               className="relative"
             >
               <img
-                src="/images/Loty logo.jpeg"
+                src="/images/New Logo.png"
                 alt="Lofty Logo"
-                className={`${scrolled ? 'w-10 h-10' : 'w-12 h-12 md:w-14 md:h-14'} rounded-full object-cover transition-all duration-700 shadow-md`}
+                className={`${scrolled ? 'w-14 h-14' : 'w-16 h-16 md:w-18 md:h-18'} rounded-full object-cover transition-all duration-700 shadow-md border-2 border-[#2d1b10]`}
               />
             </motion.div>
             <div className="flex flex-col leading-none">
@@ -112,7 +112,7 @@ const Navbar: React.FC = () => {
           >
             <div className="flex justify-between items-center mb-24">
               <div className="flex items-center gap-4">
-                <img src="/images/Loty logo.jpeg" alt="Lofty Logo" className="w-12 h-12 rounded-full object-cover shadow-sm" />
+                <img src="/images/New Logo.png" alt="Lofty Logo" className="w-16 h-16 rounded-full object-cover shadow-sm border-2 border-[#2d1b10]" />
                 <div className="flex flex-col leading-none">
                   <span className="text-xl font-serif font-bold tracking-[0.15em] text-[#2d1b10]">LOFTY</span>
                   <span className="text-xs font-serif italic font-light opacity-50 text-[#2d1b10] tracking-widest mt-1">BEAUTY</span>

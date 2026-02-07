@@ -7,7 +7,6 @@ import MobileBottomNav from './components/MobileBottomNav';
 import Footer from './components/Footer';
 import Home from './pages/Home';
 import Services from './pages/Services';
-import ServiceDetail from './pages/ServiceDetail';
 import About from './pages/About';
 import AIConsultant from './pages/AIConsultant';
 import Contact from './pages/Contact';
@@ -45,7 +44,7 @@ const SplashIntro = ({ onComplete }: { onComplete: () => void }) => {
               transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
               className="absolute inset-[-20px] border border-[#a89078]/20 rounded-full"
             />
-            <img src="/images/Loty logo.jpeg" alt="Lofty" className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover relative z-10 shadow-2xl" />
+            <img src="/images/New Logo.png" alt="Lofty" className="w-24 h-24 md:w-32 md:h-32 rounded-full object-cover relative z-10 shadow-2xl border-4 border-[#a89078]" />
           </div>
         </motion.div>
 
@@ -136,7 +135,6 @@ const AnimatedRoutes = () => {
           <Route path="/ai-consultant" element={<AIConsultant />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/booking" element={<Booking />} />
-          <Route path="/:slug" element={<ServiceDetail />} />
         </Routes>
       </motion.div>
     </AnimatePresence>
