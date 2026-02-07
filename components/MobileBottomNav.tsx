@@ -2,7 +2,7 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Home, LayoutGrid, Calendar, Phone, Sparkles } from 'lucide-react';
+import { Home, LayoutGrid, Calendar, Phone, Sparkles, Image } from 'lucide-react';
 
 const MobileBottomNav: React.FC = () => {
   const location = useLocation();
@@ -10,6 +10,7 @@ const MobileBottomNav: React.FC = () => {
   const navItems = [
     { name: 'Home', path: '/', icon: Home },
     { name: 'Services', path: '/services', icon: LayoutGrid },
+    { name: 'Gallery', path: '/gallery', icon: Image },
     { name: 'AI', path: '/ai-consultant', icon: Sparkles },
     { name: 'Book', path: '/booking', icon: Calendar },
     { name: 'Contact', path: '/contact', icon: Phone },
@@ -17,7 +18,7 @@ const MobileBottomNav: React.FC = () => {
 
   return (
     <div className="lg:hidden fixed bottom-8 left-0 right-0 z-[120] px-4 pointer-events-none flex justify-center">
-      <motion.div 
+      <motion.div
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
@@ -29,9 +30,9 @@ const MobileBottomNav: React.FC = () => {
             const Icon = item.icon;
 
             return (
-              <Link 
-                key={item.path} 
-                to={item.path} 
+              <Link
+                key={item.path}
+                to={item.path}
                 className="relative flex items-center justify-center outline-none touch-manipulation group"
               >
                 <motion.div
@@ -43,12 +44,12 @@ const MobileBottomNav: React.FC = () => {
                   transition={{ type: "spring", bounce: 0, duration: 0.4 }}
                   className={`flex items-center gap-2.5 px-4 h-[52px] rounded-full relative z-10`}
                 >
-                  <Icon 
-                    size={19} 
-                    strokeWidth={isActive ? 2.5 : 1.5} 
-                    className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/40'}`} 
+                  <Icon
+                    size={19}
+                    strokeWidth={isActive ? 2.5 : 1.5}
+                    className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/40'}`}
                   />
-                  
+
                   <AnimatePresence initial={false} mode="wait">
                     {isActive && (
                       <motion.span
@@ -63,7 +64,7 @@ const MobileBottomNav: React.FC = () => {
                     )}
                   </AnimatePresence>
                 </motion.div>
-                
+
                 {isActive && (
                   <motion.div
                     layoutId="active-pill-background"

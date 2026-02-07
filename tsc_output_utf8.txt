@@ -1,0 +1,12 @@
+﻿pages/AIConsultant.tsx(220,60): error TS2322: Type '{ size: number; "md:size": number; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'md:size' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+pages/AIConsultant.tsx(220,93): error TS2322: Type '{ size: number; "md:size": number; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'md:size' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+pages/AIConsultant.tsx(255,42): error TS2322: Type '{ size: number; "md:size": number; className: string; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'md:size' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+pages/AIConsultant.tsx(336,39): error TS2322: Type '{ size: number; "md:size": number; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'md:size' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+pages/AIConsultant.tsx(354,37): error TS2322: Type '{ size: number; "md:size": number; }' is not assignable to type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+  Property 'md:size' does not exist on type 'IntrinsicAttributes & Omit<LucideProps, "ref"> & RefAttributes<SVGSVGElement>'.
+pages/Services.tsx(8,10): error TS2300: Duplicate identifier 'useNavigate'.
+pages/Services.tsx(58,10): error TS2300: Duplicate identifier 'useNavigate'.

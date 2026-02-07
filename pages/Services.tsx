@@ -54,18 +54,20 @@ const PRICE_RANGES = [
   { label: '> LKR 15,000', value: 'over-15000' }
 ];
 
+// ... (rest of imports)
+
+
+// ... (variants remain the same)
+
 const Services: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<ServiceCategory | 'All'>('All');
   const [searchTerm, setSearchTerm] = useState('');
   const [priceFilter, setPriceFilter] = useState('all');
   const [onlyPopular, setOnlyPopular] = useState(false);
-  const [selectedServiceForModal, setSelectedServiceForModal] = useState<Service | null>(null);
   const [isFilterSticky, setIsFilterSticky] = useState(false);
   const [isInitializing, setIsInitializing] = useState(true);
-  const [showSuccessToast, setShowSuccessToast] = useState(false);
 
   const navigate = useNavigate();
-
   const scrollContainerRef = useRef<HTMLDivElement>(null);
   const priceScrollRef = useRef<HTMLDivElement>(null);
 
@@ -123,24 +125,9 @@ const Services: React.FC = () => {
     };
   }, []);
 
-  useEffect(() => {
-    if (selectedServiceForModal) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = 'unset';
-    }
-  }, [selectedServiceForModal]);
-
   const handleCategorySelect = (cat: any) => {
     if (cat === selectedCategory) return;
     setSelectedCategory(cat);
-  };
-
-  const handleReserve = () => {
-    if (selectedServiceForModal) {
-      navigate('/booking', { state: { serviceId: selectedServiceForModal.id } });
-      setSelectedServiceForModal(null);
-    }
   };
 
   const clearFilters = () => {
@@ -148,6 +135,15 @@ const Services: React.FC = () => {
     setSelectedCategory('All');
     setPriceFilter('all');
     setOnlyPopular(false);
+  };
+
+  const handleServiceClick = (slug: string) => {
+    if (slug) {
+      navigate(`/${slug}`);
+    } else {
+      // Fallback for services without slug (shouldn't happen with updated constants)
+      console.warn("Service missing slug");
+    }
   };
 
   return (
@@ -310,7 +306,7 @@ const Services: React.FC = () => {
                         exit="exit"
                       >
                         <motion.div
-                          onClick={() => setSelectedServiceForModal(service)}
+                          onClick={() => handleServiceClick(service.slug || '')}
                           whileHover={{ y: -8, transition: { duration: 0.4 } }}
                           whileTap={{ scale: 0.98 }}
                           className="group relative flex flex-col md:flex-row items-stretch bg-white rounded-3xl md:rounded-[3.5rem] p-3 md:p-10 border border-[#ede3da] hover:border-[#a89078]/40 transition-all duration-700 overflow-hidden shadow-sm hover:shadow-[0_40px_80px_-20px_rgba(45,27,16,0.08)] cursor-pointer h-full"
@@ -325,7 +321,7 @@ const Services: React.FC = () => {
                             <motion.img
                               initial={{ scale: 1.1 }}
                               src={service.image}
-                              alt={service.title}
+                              alt={service.altText || service.title}
                               className="w-full h-full object-cover transition-all duration-[1.5s] ease-[0.16,1,0.3,1] group-hover:scale-105"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-[#2d1b10]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
@@ -391,120 +387,6 @@ const Services: React.FC = () => {
                 )}
               </AnimatePresence>
             </div>
-
-            {/* Service Detail Modal */}
-            <AnimatePresence>
-              {selectedServiceForModal && (
-                <div className="fixed inset-0 z-[200] flex items-end md:items-center justify-center p-0 md:p-8 overflow-hidden">
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    onClick={() => setSelectedServiceForModal(null)}
-                    className="fixed inset-0 bg-[#2d1b10]/90 backdrop-blur-2xl"
-                  />
-
-                  <motion.div
-                    initial={{ opacity: 0, scale: 0.92, y: 100, filter: 'blur(10px)' }}
-                    animate={{ opacity: 1, scale: 1, y: 0, filter: 'blur(0px)' }}
-                    exit={{ opacity: 0, scale: 0.95, y: 50, filter: 'blur(10px)' }}
-                    transition={{ type: "spring", damping: 30, stiffness: 200 }}
-                    className="relative w-full max-w-6xl bg-[#fcfaf7] rounded-t-[2.5rem] md:rounded-[4rem] overflow-hidden shadow-[0_50px_100px_-20px_rgba(0,0,0,0.6)] z-10 max-h-[96vh] flex flex-col"
-                  >
-                    <div className="overflow-y-auto flex-1 no-scrollbar">
-                      <div className="flex flex-col md:flex-row min-h-full">
-                        <div className="w-full md:w-1/2 h-72 md:h-auto relative overflow-hidden group">
-                          <motion.img
-                            initial={{ scale: 1.25 }}
-                            animate={{ scale: 1 }}
-                            transition={{ duration: 2, ease: [0.16, 1, 0.3, 1] }}
-                            src={selectedServiceForModal.image}
-                            alt={selectedServiceForModal.title}
-                            className="w-full h-full object-cover"
-                          />
-                          <button
-                            onClick={() => setSelectedServiceForModal(null)}
-                            className="absolute top-4 right-4 md:top-6 md:right-6 p-3 md:p-4 rounded-full bg-white/20 backdrop-blur-md text-white border border-white/20 hover:bg-white hover:text-[#2d1b10] transition-all z-20"
-                          >
-                            <X size={20} strokeWidth={1.5} />
-                          </button>
-                          <div className="absolute inset-0 bg-gradient-to-r from-[#2d1b10]/30 to-transparent pointer-events-none" />
-                        </div>
-
-                        <div className="w-full md:w-1/2 p-6 md:p-20 flex flex-col justify-between bg-[#fcfaf7] relative">
-                          <div className="space-y-6 md:space-y-12">
-                            <div>
-                              <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-5">
-                                <Sparkle size={10} className="text-[#a89078]" />
-                                <span className="text-[8px] md:text-[10px] font-bold uppercase tracking-[0.5em] md:tracking-[0.6em] text-[#a89078]">{selectedServiceForModal.category}</span>
-                              </div>
-                              <h2 className="text-3xl md:text-7xl font-serif text-[#2d1b10] mb-4 md:mb-6 italic leading-tight">{selectedServiceForModal.title}</h2>
-                              <div className="h-[1px] w-12 md:w-16 bg-[#a89078]/40"></div>
-                            </div>
-
-                            <p className="text-[#5c4a3e] text-base md:text-2xl leading-relaxed font-light opacity-90 italic">
-                              {selectedServiceForModal.description}
-                            </p>
-
-                            <div className="flex gap-8 md:gap-20 border-t border-[#ede3da] pt-6 md:pt-10">
-                              <div className="space-y-1">
-                                <p className="text-[8px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold text-[#a89078]">Duration</p>
-                                <p className="font-serif text-lg md:text-3xl text-[#2d1b10]">{selectedServiceForModal.duration}</p>
-                              </div>
-                              <div className="space-y-1">
-                                <p className="text-[8px] md:text-[9px] uppercase tracking-[0.3em] md:tracking-[0.4em] font-bold text-[#a89078]">Investment</p>
-                                <p className="font-serif text-lg md:text-3xl text-[#2d1b10]">{selectedServiceForModal.price}</p>
-                              </div>
-                            </div>
-                          </div>
-
-                          <div className="mt-8 md:mt-20">
-                            <button
-                              onClick={handleReserve}
-                              className="w-full group relative overflow-hidden bg-[#2d1b10] text-white py-5 md:py-8 rounded-xl md:rounded-[2rem] font-bold uppercase tracking-[0.3em] md:tracking-[0.4em] text-[9px] md:text-[11px] flex items-center justify-center gap-4 md:gap-6 hover:bg-[#3d2b1f] transition-all shadow-2xl active:scale-95"
-                            >
-                              <span className="relative z-10">Confirm Reservation</span>
-                              <ArrowRight size={16} className="relative z-10 group-hover:translate-x-2 transition-transform duration-500" />
-                            </button>
-                            <p className="text-center text-[7px] md:text-[9px] text-[#a89078] uppercase tracking-widest mt-4 md:mt-6 opacity-50">Private consultations included with every ritual</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              )}
-            </AnimatePresence>
-
-            {/* Success Toast */}
-            <AnimatePresence>
-              {showSuccessToast && (
-                <motion.div
-                  initial={{ opacity: 0, y: 80, x: "-50%" }}
-                  animate={{ opacity: 1, y: 0, x: "-50%" }}
-                  exit={{ opacity: 0, y: 80, x: "-50%" }}
-                  className="fixed bottom-12 md:bottom-20 left-1/2 z-[300] w-[92%] max-w-md"
-                >
-                  <div className="bg-[#2d1b10] text-white p-4 md:p-5 rounded-2xl md:rounded-[2rem] shadow-[0_25px_60px_-12px_rgba(0,0,0,0.5)] border border-white/10 flex items-center justify-between gap-3 md:gap-4 backdrop-blur-lg">
-                    <div className="flex items-center gap-3 md:gap-4 pl-1">
-                      <div className="w-8 h-8 md:w-9 md:h-9 rounded-full bg-[#fcfaf7]/10 flex items-center justify-center text-[#a89078] shadow-inner">
-                        <CheckCircle2 size={16} md:size={18} />
-                      </div>
-                      <div>
-                        <p className="text-[8px] md:text-[9px] uppercase tracking-widest font-bold text-[#a89078] mb-0.5">Booking Initialized</p>
-                        <p className="text-[10px] md:text-[11px] font-light italic opacity-80">Concierge will contact you shortly.</p>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => setShowSuccessToast(false)}
-                      className="shrink-0 flex items-center gap-1.5 bg-[#fcfaf7] text-[#2d1b10] px-4 md:px-5 py-2.5 md:py-3 rounded-full text-[8px] md:text-[9px] font-bold uppercase tracking-widest hover:bg-white transition-all active:scale-95 shadow-lg"
-                    >
-                      <RotateCcw size={10} md:size={12} /> Again
-                    </button>
-                  </div>
-                </motion.div>
-              )}
-            </AnimatePresence>
           </motion.div>
         )}
       </AnimatePresence>

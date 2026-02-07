@@ -8,6 +8,8 @@ export interface Service {
   category: ServiceCategory;
   image: string;
   isPopular?: boolean;
+  slug?: string;
+  altText?: string;
 }
 
 export enum ServiceCategory {

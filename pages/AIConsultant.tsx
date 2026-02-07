@@ -217,7 +217,7 @@ const AIConsultant: React.FC = () => {
                     className={`flex gap-3 md:gap-6 ${m.role === 'user' ? 'flex-row-reverse' : ''}`}
                   >
                     <div className={`w-8 h-8 md:w-14 md:h-14 rounded-full flex items-center justify-center flex-shrink-0 shadow-sm border border-[#ede3da] ${m.role === 'user' ? 'bg-[#2d1b10] text-white border-none' : 'bg-white text-[#a89078]'}`}>
-                      {m.role === 'user' ? <User size={14} md:size={18} /> : <Bot size={16} md:size={22} />}
+                      {m.role === 'user' ? <User className="w-[14px] h-[14px] md:w-[18px] md:h-[18px]" /> : <Bot className="w-[16px] h-[16px] md:w-[22px] md:h-[22px]" />}
                     </div>
                     <div className={`max-w-[88%] md:max-w-[75%] p-4 md:p-8 rounded-[1.5rem] md:rounded-[2rem] text-[12px] md:text-base leading-relaxed ${m.role === 'user' ? 'bg-[#2d1b10] text-white shadow-lg' : 'bg-white shadow-sm border border-[#ede3da] text-[#2d1b10] font-light italic'}`}>
                       {m.image && (
@@ -252,7 +252,7 @@ const AIConsultant: React.FC = () => {
                 {isLoading && (
                   <div className="flex gap-3 md:gap-6">
                     <div className="w-8 h-8 md:w-14 md:h-14 rounded-full bg-white border border-[#ede3da] flex items-center justify-center shadow-inner">
-                      <Loader2 size={14} md:size={18} className="animate-spin text-[#a89078]" />
+                      <Loader2 className="w-[14px] h-[14px] md:w-[18px] md:h-[18px] animate-spin text-[#a89078]" />
                     </div>
                     <div className="bg-white/80 backdrop-blur-md px-5 md:px-8 py-4 md:py-6 rounded-[1.5rem] md:rounded-[2.2rem] shadow-xl border border-[#ede3da] flex items-center gap-4">
                       <div className="flex gap-1.5">
@@ -333,7 +333,7 @@ const AIConsultant: React.FC = () => {
                     onClick={() => fileInputRef.current?.click()}
                     className={`p-4 md:p-5 rounded-xl md:rounded-2xl transition-all shadow-sm ${selectedImage ? 'bg-[#2d1b10] text-white' : 'text-[#a89078] bg-[#fcfaf7] hover:bg-[#ede3da]'}`}
                   >
-                    <Camera size={20} md:size={22} />
+                    <Camera className="w-[20px] h-[20px] md:w-[22px] md:h-[22px]" />
                   </motion.button>
 
                   <input
@@ -351,7 +351,7 @@ const AIConsultant: React.FC = () => {
                     disabled={isLoading || (!input.trim() && !selectedImage)}
                     className="p-4 md:p-5 bg-[#2d1b10] text-white rounded-xl md:rounded-2xl transition-all disabled:opacity-20 shadow-lg flex items-center justify-center"
                   >
-                    <Send size={20} md:size={22} />
+                    <Send className="w-[20px] h-[20px] md:w-[22px] md:h-[22px]" />
                   </motion.button>
                 </div>
               </div>
