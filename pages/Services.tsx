@@ -60,9 +60,7 @@ const Services: React.FC = () => {
   const [priceFilter, setPriceFilter] = useState('all');
   const [onlyPopular, setOnlyPopular] = useState(false);
   const [isFilterSticky, setIsFilterSticky] = useState(false);
-  const [showFilter, setShowFilter] = useState(true);
   const [isInitializing, setIsInitializing] = useState(true);
-  const lastScrollY = useRef(0);
 
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
@@ -110,17 +108,7 @@ const Services: React.FC = () => {
 
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-
-      // Determine if scrolling Down or Up
-      if (currentScrollY > lastScrollY.current && currentScrollY > 100) {
-        setShowFilter(false); // Hide on scroll down
-      } else {
-        setShowFilter(true); // Show on scroll up
-      }
-
-      setIsFilterSticky(currentScrollY > 100);
-      lastScrollY.current = currentScrollY;
+      setIsFilterSticky(window.scrollY > 100);
     };
     window.addEventListener('scroll', handleScroll);
 
@@ -151,7 +139,7 @@ const Services: React.FC = () => {
   };
 
   return (
-    <div className="bg-[#fcfaf7] min-h-screen pt-24 pb-32 overflow-hidden">
+    <div className="bg-[#fcfaf7] min-h-screen pt-24 pb-32">
       <AnimatePresence mode="wait">
         {isInitializing ? (
           <PageLoader key="loader" label="Curating the Menu" />
@@ -181,7 +169,8 @@ const Services: React.FC = () => {
             </section>
 
             {/* Filter & Search Section */}
-            <div className={`sticky z-40 transition-all duration-500 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'} ${showFilter ? 'top-[70px] md:top-[80px]' : '-top-40'}`}>
+            <div className={`sticky top-[70px] md:top-[80px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'
+              }`}>
               <div className="max-w-[1400px] mx-auto px-4 md:px-8 space-y-4">
 
                 {/* Search Bar */}
