@@ -17,14 +17,14 @@ const MobileBottomNav: React.FC = () => {
   ];
 
   return (
-    <div className="lg:hidden fixed bottom-8 left-0 right-0 z-[120] px-4 pointer-events-none flex justify-center">
+    <div className="lg:hidden fixed bottom-4 sm:bottom-8 left-0 right-0 z-[120] px-4 pointer-events-none flex justify-center">
       <motion.div
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-auto bg-[#261810]/90 backdrop-blur-xl border border-white/10 rounded-[2.5rem] h-[68px] flex items-center p-1.5 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)]"
+        className="pointer-events-auto bg-[#261810]/90 backdrop-blur-xl border border-white/10 rounded-[2rem] h-[56px] sm:h-[68px] flex items-center p-1 sm:p-1.5 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.5)] max-w-full overflow-x-auto no-scrollbar scroll-smooth"
       >
-        <div className="flex items-center gap-1.5 h-full relative">
+        <div className="flex items-center gap-1 sm:gap-1.5 h-full relative px-1">
           {navItems.map((item) => {
             const isActive = location.pathname === item.path;
             const Icon = item.icon;
@@ -33,21 +33,21 @@ const MobileBottomNav: React.FC = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className="relative flex items-center justify-center outline-none touch-manipulation group"
+                className="relative flex items-center justify-center outline-none touch-manipulation group shrink-0"
               >
                 <motion.div
                   initial={false}
                   animate={{
-                    width: isActive ? 'auto' : '52px',
+                    width: isActive ? 'auto' : '40px',
                     backgroundColor: isActive ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
                   }}
                   transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                  className={`flex items-center gap-2.5 px-4 h-[52px] rounded-full relative z-10`}
+                  className={`flex items-center gap-2 px-2.5 sm:px-4 h-[44px] sm:h-[52px] rounded-full relative z-10 sm:min-w-[52px] min-w-[40px] justify-center`}
                 >
                   <Icon
-                    size={19}
+                    size={18}
                     strokeWidth={isActive ? 2.5 : 1.5}
-                    className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/40'}`}
+                    className={`transition-colors duration-300 ${isActive ? 'text-white' : 'text-white/40'} shrink-0`}
                   />
 
                   <AnimatePresence initial={false} mode="wait">
