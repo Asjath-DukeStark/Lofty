@@ -168,7 +168,7 @@ const Services: React.FC = () => {
               </motion.div>
             </section>
 
-            <div className={`sticky top-[100px] md:top-[104px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'
+            <div className={`sticky top-[100px] md:top-[104px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/80 backdrop-blur-[20px] backdrop-saturate-150 border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.03)]' : 'bg-transparent'
               }`}>
               {/* Header Filler Background */}
               <div

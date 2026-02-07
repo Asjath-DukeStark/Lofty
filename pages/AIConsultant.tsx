@@ -201,7 +201,7 @@ const AIConsultant: React.FC = () => {
               </p>
             </div>
 
-            <div className="bg-white rounded-[2rem] md:rounded-[3rem] shadow-[0_30px_80px_-20px_rgba(45,27,16,0.15)] border border-[#ede3da] overflow-hidden flex flex-col h-[calc(100dvh-320px)] md:h-[700px] relative z-10">
+            <div className="bg-[#fcfaf7]/60 backdrop-blur-[20px] backdrop-saturate-150 rounded-[2rem] md:rounded-[3rem] shadow-[0_30px_80px_-20px_rgba(45,27,16,0.15)] border border-white/20 overflow-hidden flex flex-col h-[calc(100dvh-320px)] md:h-[700px] relative z-10">
 
               {/* Chat Window - Optimized for Mobile Scrolling */}
               <div
@@ -319,7 +319,7 @@ const AIConsultant: React.FC = () => {
               </AnimatePresence>
 
               {/* Input Bar - Focused for Mobile Thumb Accessibility */}
-              <div className="p-4 md:p-8 bg-white border-t border-[#ede3da]">
+              <div className="p-4 md:p-8 bg-white/40 backdrop-blur-md border-t border-white/20">
                 <div className="flex gap-2 md:gap-4 items-center">
                   <input
                     type="file"

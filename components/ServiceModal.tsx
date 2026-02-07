@@ -43,7 +43,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ service, isOpen, onClose })
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         onClick={onClose}
-                        className="fixed inset-0 bg-[#2d1b10]/60 backdrop-blur-sm z-[100] cursor-pointer"
+                        className="fixed inset-0 bg-[#2d1b10]/40 backdrop-blur-[12px] z-[100] cursor-pointer"
                     />
 
                     {/* Modal Container */}
@@ -53,7 +53,7 @@ const ServiceModal: React.FC<ServiceModalProps> = ({ service, isOpen, onClose })
                             animate={{ opacity: 1, scale: 1, y: 0 }}
                             exit={{ opacity: 0, scale: 0.95, y: 20 }}
                             transition={{ type: "spring", duration: 0.5, bounce: 0.3 }}
-                            className="bg-[#fcfaf7] w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[2.5rem] shadow-2xl pointer-events-auto relative flex flex-col md:flex-row overflow-hidden"
+                            className="bg-[#fcfaf7]/90 backdrop-blur-3xl backdrop-saturate-150 w-full max-w-5xl max-h-[90vh] overflow-y-auto rounded-[2.5rem] shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] border border-white/40 pointer-events-auto relative flex flex-col md:flex-row overflow-hidden"
                         >
                             {/* Close Button */}
                             <button

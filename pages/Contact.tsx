@@ -62,7 +62,7 @@ const Contact: React.FC = () => {
                       initial={{ opacity: 0, y: 10 }}
                       animate={{ opacity: 1, y: 0 }}
                       transition={{ delay: i * 0.1 }}
-                      className={`bg-white p-10 rounded-[2.5rem] border border-[#ede3da] shadow-sm hover:shadow-xl transition-all ${item.full ? 'md:col-span-2' : ''}`}
+                      className={`bg-[#fcfaf7]/60 backdrop-blur-[20px] backdrop-saturate-150 p-10 rounded-[2.5rem] border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] hover:shadow-xl transition-all ${item.full ? 'md:col-span-2' : ''}`}
                     >
                       <div className="w-14 h-14 bg-[#fcfaf7] rounded-2xl flex items-center justify-center text-[#2d1b10] border border-[#ede3da] mb-8">
                         <item.icon size={24} strokeWidth={1.5} />
@@ -78,7 +78,7 @@ const Contact: React.FC = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white rounded-[3rem] shadow-3xl p-10 md:p-16 border border-[#ede3da]"
+                className="bg-[#fcfaf7]/60 backdrop-blur-[20px] backdrop-saturate-150 rounded-[3rem] shadow-[0_30px_80px_-20px_rgba(45,27,16,0.15)] p-10 md:p-16 border border-white/20"
               >
                 <h2 className="text-3xl font-serif mb-10 text-[#2d1b10]">Send a Request</h2>
 

@@ -170,8 +170,8 @@ I'm looking forward to my visit!`;
                                       whileTap={{ scale: 0.97 }}
                                       onClick={() => toggleService(s.id)}
                                       className={`group flex items-center justify-between p-5 md:p-6 rounded-2xl border transition-all duration-500 text-left min-h-[72px] ${isSelected
-                                          ? 'border-[#2d1b10] bg-[#2d1b10] text-white shadow-lg'
-                                          : 'border-[#ede3da] hover:border-[#a89078] bg-white text-[#2d1b10]'
+                                        ? 'border-[#2d1b10] bg-[#2d1b10] text-white shadow-lg'
+                                        : 'border-[#ede3da] hover:border-[#a89078] bg-white text-[#2d1b10]'
                                         }`}
                                     >
                                       <div className="pr-4">
@@ -200,7 +200,7 @@ I'm looking forward to my visit!`;
                             initial={{ y: 150, opacity: 0, x: "-50%" }}
                             animate={{ y: 0, opacity: 1, x: "-50%" }}
                             exit={{ y: 150, opacity: 0, x: "-50%" }}
-                            className="fixed bottom-[110px] left-1/2 w-[94%] md:w-auto md:min-w-[550px] bg-[#2d1b10]/95 backdrop-blur-2xl border border-white/10 rounded-full p-2 flex items-center justify-between shadow-[0_25px_60px_-15px_rgba(0,0,0,0.6)] z-[150]"
+                            className="fixed bottom-[110px] left-1/2 w-[94%] md:w-auto md:min-w-[550px] bg-[#2d1b10]/40 backdrop-blur-[20px] backdrop-saturate-150 border border-white/10 rounded-full p-2 flex items-center justify-between shadow-[0_15px_35px_-10px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.15)] z-[150]"
                           >
                             <div className="flex items-center gap-4 md:gap-8 ml-4 md:ml-8">
                               <div className="flex flex-col">

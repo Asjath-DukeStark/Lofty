@@ -39,7 +39,7 @@ const Home: React.FC = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
   const { scrollY } = useScroll();
   const timerRef = useRef<number | null>(null);
-  
+
   const heroScale = useTransform(scrollY, [0, 800], [1, 1.05]);
   const heroOpacity = useTransform(scrollY, [0, 600], [1, 0]);
 
@@ -86,19 +86,19 @@ const Home: React.FC = () => {
       scale: 1.1,
       filter: 'blur(10px)'
     }),
-    animate: { 
-      opacity: 1, 
-      scale: 1, 
+    animate: {
+      opacity: 1,
+      scale: 1,
       filter: 'blur(0px)',
-      transition: { 
-        duration: 1.2, 
-        ease: [0.16, 1, 0.3, 1] as [number, number, number, number] 
-      } 
+      transition: {
+        duration: 1.2,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number]
+      }
     },
-    exit: { 
-      opacity: 0, 
+    exit: {
+      opacity: 0,
       scale: 0.95,
-      transition: { duration: 0.8 } 
+      transition: { duration: 0.8 }
     }
   };
 
@@ -113,17 +113,17 @@ const Home: React.FC = () => {
 
   const textItemVariants: Variants = {
     initial: { y: 20, opacity: 0 },
-    animate: { 
-      y: 0, 
-      opacity: 1, 
-      transition: { 
-        duration: 0.8, 
-        ease: [0.16, 1, 0.3, 1] as [number, number, number, number] 
-      } 
+    animate: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.16, 1, 0.3, 1] as [number, number, number, number]
+      }
     },
-    exit: { 
-      opacity: 0, 
-      transition: { duration: 0.4 } 
+    exit: {
+      opacity: 0,
+      transition: { duration: 0.4 }
     }
   };
 
@@ -142,7 +142,7 @@ const Home: React.FC = () => {
             {/* Hero Section - Optimized for Mobile Swipe */}
             <section className="relative h-[82dvh] md:h-[100dvh] flex items-center justify-center overflow-hidden touch-none">
               <AnimatePresence mode="wait" initial={false}>
-                <motion.div 
+                <motion.div
                   key={currentSlide}
                   variants={slideVariants}
                   initial="initial"
@@ -155,15 +155,15 @@ const Home: React.FC = () => {
                   style={{ scale: heroScale, opacity: heroOpacity }}
                   className="absolute inset-0 cursor-grab active:cursor-grabbing"
                 >
-                  <img 
-                    src={HERO_SLIDES[currentSlide].image} 
-                    alt={HERO_SLIDES[currentSlide].title} 
+                  <img
+                    src={HERO_SLIDES[currentSlide].image}
+                    alt={HERO_SLIDES[currentSlide].title}
                     className="w-full h-full object-cover pointer-events-none select-none"
                   />
                   <div className="absolute inset-0 bg-gradient-to-b from-[#2d1b10]/60 via-[#2d1b10]/10 to-[#fcfaf7] pointer-events-none"></div>
                 </motion.div>
               </AnimatePresence>
-              
+
               <div className="relative text-center text-white px-6 max-w-6xl w-full z-10 mt-16 md:mt-0 pointer-events-none">
                 <AnimatePresence mode="wait">
                   <motion.div
@@ -175,16 +175,16 @@ const Home: React.FC = () => {
                     className="flex flex-col items-center"
                   >
                     <div className="mb-3 md:mb-6">
-                      <motion.span 
+                      <motion.span
                         variants={textItemVariants}
                         className="block text-[9px] md:text-[11px] uppercase tracking-[0.8em] font-bold text-white/80"
                       >
                         {HERO_SLIDES[currentSlide].tagline}
                       </motion.span>
                     </div>
-                    
+
                     <div className="mb-4 md:mb-8">
-                      <motion.h1 
+                      <motion.h1
                         variants={textItemVariants}
                         className="text-4xl md:text-[10rem] font-serif leading-[1.1] md:leading-[1] tracking-tight"
                       >
@@ -202,20 +202,20 @@ const Home: React.FC = () => {
                       </motion.p>
                     </div>
 
-                    <motion.div 
+                    <motion.div
                       variants={textItemVariants}
                       className="flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 w-full px-4 pointer-events-auto"
                     >
-                      <Link 
-                        to="/services" 
-                        className="w-full md:w-auto group relative flex items-center justify-center px-8 md:px-12 py-4 md:py-5 rounded-full border border-white/30 hover:bg-white hover:text-[#2d1b10] transition-all duration-500 bg-white/5 backdrop-blur-md active:scale-95"
+                      <Link
+                        to="/services"
+                        className="w-full md:w-auto group relative flex items-center justify-center px-8 md:px-12 py-4 md:py-5 rounded-full border border-white/20 hover:bg-white hover:text-[#2d1b10] transition-all duration-500 bg-white/10 backdrop-blur-[20px] backdrop-saturate-150 active:scale-95 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)]"
                       >
                         <span className="text-[9px] md:text-[10px] uppercase tracking-[0.4em] font-bold">SEE SERVICES</span>
                         <ChevronRight size={14} className="ml-3 group-hover:translate-x-1 transition-transform" />
                       </Link>
 
-                      <Link 
-                        to="/booking" 
+                      <Link
+                        to="/booking"
                         className="w-full md:w-auto px-8 md:px-12 py-4 md:py-5 rounded-full bg-white text-[#2d1b10] font-bold text-[9px] md:text-[10px] uppercase tracking-[0.4em] hover:bg-[#fcfaf7] transition-all shadow-xl active:scale-95"
                       >
                         BOOK NOW
@@ -235,11 +235,10 @@ const Home: React.FC = () => {
                     }}
                     className="p-3 outline-none touch-manipulation"
                   >
-                    <div className={`transition-all duration-500 ease-out ${
-                      currentSlide === idx 
-                        ? 'w-10 md:w-14 h-[1.5px] bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]' 
+                    <div className={`transition-all duration-500 ease-out ${currentSlide === idx
+                        ? 'w-10 md:w-14 h-[1.5px] bg-white shadow-[0_0_15px_rgba(255,255,255,0.8)]'
                         : 'w-2 md:w-4 h-[1.5px] bg-white/30'
-                    }`} />
+                      }`} />
                   </button>
                 ))}
               </div>
@@ -285,7 +284,7 @@ const Home: React.FC = () => {
 
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-12">
                   {SERVICES.slice(0, 3).map((s, idx) => (
-                    <motion.div 
+                    <motion.div
                       key={s.id}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -294,10 +293,10 @@ const Home: React.FC = () => {
                       className="group cursor-pointer"
                     >
                       <TiltCard className="mb-6 md:mb-8">
-                        <img 
-                          src={s.image} 
-                          alt={s.title} 
-                          className="w-full aspect-[4/5] object-cover rounded-[2rem] md:rounded-[3rem] grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700" 
+                        <img
+                          src={s.image}
+                          alt={s.title}
+                          className="w-full aspect-[4/5] object-cover rounded-[2rem] md:rounded-[3rem] grayscale-[0.2] group-hover:grayscale-0 transition-all duration-700"
                         />
                       </TiltCard>
                       <div className="px-2 md:px-4 space-y-2 md:space-y-3">
