@@ -168,10 +168,13 @@ const Services: React.FC = () => {
               </motion.div>
             </section>
 
-            {/* Filter & Search Section */}
-            <div className={`sticky top-[70px] md:top-[80px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'
+            <div className={`sticky top-[100px] md:top-[104px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/95 backdrop-blur-3xl border-b border-[#ede3da] shadow-md' : 'bg-transparent'
               }`}>
-              <div className="max-w-[1400px] mx-auto px-4 md:px-8 space-y-4">
+              {/* Header Filler Background */}
+              <div
+                className={`absolute bottom-full left-0 right-0 h-[200px] bg-[#fcfaf7] transition-opacity duration-500 pointer-events-none ${isFilterSticky ? 'opacity-95' : 'opacity-0'}`}
+              />
+              <div className="max-w-[1400px] mx-auto px-4 md:px-8 space-y-4 relative z-10">
 
                 {/* Search Bar */}
                 <div className="relative max-w-2xl mx-auto">

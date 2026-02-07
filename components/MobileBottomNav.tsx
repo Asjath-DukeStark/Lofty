@@ -17,7 +17,7 @@ const MobileBottomNav: React.FC = () => {
   ];
 
   return (
-    <div className="lg:hidden fixed bottom-4 sm:bottom-8 left-0 right-0 z-[120] px-4 pointer-events-none flex justify-center">
+    <div className="lg:hidden fixed bottom-4 sm:bottom-8 left-0 right-0 z-[90] px-4 pointer-events-none flex justify-center">
       <motion.div
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}

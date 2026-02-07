@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className={`mx-auto transition-all duration-700 ease-[0.16,1,0.3,1] bg-white rounded-full flex items-center justify-between shadow-[0_15px_40px_-10px_rgba(45,27,16,0.12)] border border-[#ede3da] ${scrolled ? 'max-w-[1000px] py-3 px-6 md:px-8' : 'max-w-[1200px] py-4 px-8 md:px-12'
+          className={`mx-auto transition-all duration-700 ease-[0.16,1,0.3,1] bg-white rounded-full flex items-center justify-between shadow-[0_15px_40px_-10px_rgba(45,27,16,0.12)] border border-[#ede3da] ${scrolled ? 'max-w-[1000px] py-1.5 px-6 md:px-8' : 'max-w-[1200px] py-2 px-8 md:px-12'
             }`}
         >
           {/* Logo Branding */}
