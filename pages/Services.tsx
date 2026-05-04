@@ -168,11 +168,10 @@ const Services: React.FC = () => {
               </motion.div>
             </section>
 
-            <div className={`sticky top-[100px] md:top-[104px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/80 backdrop-blur-[20px] backdrop-saturate-150 border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.03)]' : 'bg-transparent'
+            <div className={`relative lg:sticky top-0 lg:top-[104px] z-40 transition-all duration-700 py-3 md:py-6 ${isFilterSticky ? 'bg-[#fcfaf7]/80 backdrop-blur-[20px] backdrop-saturate-150 lg:border-b border-white/20 shadow-[0_4px_30px_rgba(0,0,0,0.03)]' : 'bg-transparent'
               }`}>
-              {/* Header Filler Background */}
               <div
-                className={`absolute bottom-full left-0 right-0 h-[200px] bg-[#fcfaf7] transition-opacity duration-500 pointer-events-none ${isFilterSticky ? 'opacity-95' : 'opacity-0'}`}
+                className={`hidden lg:block absolute bottom-full left-0 right-0 h-[200px] bg-[#fcfaf7] transition-opacity duration-500 pointer-events-none ${isFilterSticky ? 'opacity-95' : 'opacity-0'}`}
               />
               <div className="max-w-[1400px] mx-auto px-4 md:px-8 space-y-4 relative z-10">
 

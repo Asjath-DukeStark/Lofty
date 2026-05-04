@@ -22,7 +22,7 @@ const MobileBottomNav: React.FC = () => {
         initial={{ y: 80, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-        className="pointer-events-auto bg-[#2d1b10]/40 backdrop-blur-[20px] backdrop-saturate-150 border border-white/10 rounded-full h-[64px] sm:h-[72px] flex items-center p-2 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.15)] max-w-[95vw] overflow-x-auto no-scrollbar scroll-smooth"
+        className="pointer-events-auto bg-[#2d1b10]/40 backdrop-blur-[20px] backdrop-saturate-150 border border-white/10 rounded-full h-[56px] sm:h-[64px] flex items-center p-2 shadow-[0_15px_35px_-10px_rgba(0,0,0,0.5),inset_0_1px_0_0_rgba(255,255,255,0.15)] max-w-[95vw] overflow-x-auto no-scrollbar scroll-smooth"
       >
         <div className="flex items-center gap-1 sm:gap-1.5 h-full relative px-1">
           {navItems.map((item) => {
@@ -42,7 +42,7 @@ const MobileBottomNav: React.FC = () => {
                     backgroundColor: isActive ? 'rgba(255, 255, 255, 0.15)' : 'transparent',
                   }}
                   transition={{ type: "spring", bounce: 0, duration: 0.4 }}
-                  className={`flex items-center gap-2 px-2.5 sm:px-4 h-[44px] sm:h-[52px] rounded-full relative z-10 sm:min-w-[52px] min-w-[40px] justify-center`}
+                  className={`flex items-center gap-2 px-2.5 sm:px-4 h-[40px] sm:h-[48px] rounded-full relative z-10 sm:min-w-[48px] min-w-[40px] justify-center`}
                 >
                   <Icon
                     size={18}

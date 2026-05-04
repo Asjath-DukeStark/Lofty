@@ -40,7 +40,7 @@ const Navbar: React.FC = () => {
         <motion.div
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className={`mx-auto transition-all duration-700 ease-[0.16,1,0.3,1] backdrop-blur-[20px] backdrop-saturate-150 rounded-full flex items-center justify-between border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ${scrolled ? 'bg-white/80 max-w-[1000px] py-2 px-6 md:px-8' : 'bg-white/60 max-w-[1200px] py-4 px-8 md:px-12'
+          className={`mx-auto transition-all duration-700 ease-[0.16,1,0.3,1] backdrop-blur-[20px] backdrop-saturate-150 rounded-full flex items-center justify-between border border-white/20 shadow-[0_8px_30px_rgb(0,0,0,0.04)] ${scrolled ? 'bg-white/80 max-w-[1000px] py-1.5 md:py-2 px-5 md:px-8' : 'bg-white/60 max-w-[1200px] py-1.5 md:py-4 px-5 md:px-12'
             }`}
         >
           {/* Logo Branding */}
@@ -52,7 +52,7 @@ const Navbar: React.FC = () => {
               <img
                 src="/images/New Logo.png"
                 alt="Lofty Logo"
-                className={`${scrolled ? 'w-14 h-14' : 'w-16 h-16 md:w-18 md:h-18'} rounded-full object-cover transition-all duration-700 shadow-md border-2 border-[#2d1b10]`}
+                className={`${scrolled ? 'w-8 h-8 md:w-14 md:h-14' : 'w-9 h-9 md:w-18 md:h-18'} rounded-full object-cover transition-all duration-700 shadow-md border-2 border-[#2d1b10]`}
               />
             </motion.div>
             <div className="flex flex-col leading-none">
@@ -94,9 +94,9 @@ const Navbar: React.FC = () => {
           {/* Mobile Menu Trigger */}
           <button
             onClick={() => setIsOpen(true)}
-            className="p-2 lg:hidden text-[#2d1b10] hover:opacity-50 transition-opacity"
+            className="p-1 lg:hidden text-[#2d1b10] hover:opacity-50 transition-opacity"
           >
-            <Menu size={24} strokeWidth={1} />
+            <Menu size={22} strokeWidth={1.5} />
           </button>
         </motion.div>
       </nav>
