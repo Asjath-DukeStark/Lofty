@@ -2,7 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, ArrowRight } from 'lucide-react';
+import { Menu, X, ArrowRight, ChevronRight, Search, ShoppingBag } from 'lucide-react';
 
 const LogoIcon = ({ className = "w-6 h-6", color = "currentColor" }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
@@ -108,54 +108,73 @@ const Navbar: React.FC = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-[110] bg-[#fcfaf7] flex flex-col p-8 md:p-12"
+            className="fixed inset-0 z-[110] bg-white flex flex-col p-6"
           >
-            <div className="flex justify-between items-center mb-24">
-              <div className="flex items-center gap-4">
-                <img src="/images/New Logo.png" alt="Lofty Logo" className="w-16 h-16 rounded-full object-cover shadow-sm border-2 border-[#2d1b10]" />
+            <div className="flex justify-between items-center mb-8">
+              <div className="flex items-center gap-3">
+                <img src="/images/New Logo.png" alt="Lofty Logo" className="w-10 h-10 rounded-full object-cover border border-[#2d1b10]" />
                 <div className="flex flex-col leading-none">
-                  <span className="text-xl font-serif font-bold tracking-[0.15em] text-[#2d1b10]">LOFTY</span>
-                  <span className="text-xs font-serif italic font-light opacity-50 text-[#2d1b10] tracking-widest mt-1">BEAUTY</span>
+                  <span className="text-lg font-serif font-bold tracking-[0.1em] text-[#2d1b10]">LOFTY</span>
+                  <span className="text-[8px] font-serif italic font-light opacity-50 text-[#2d1b10] tracking-widest mt-0.5">BEAUTY</span>
                 </div>
               </div>
-              <button
-                onClick={() => setIsOpen(false)}
-                className="p-4 rounded-full bg-white border border-[#ede3da] text-[#2d1b10] shadow-sm"
-              >
-                <X size={24} strokeWidth={1} />
-              </button>
-            </div>
-
-            <div className="flex-1 flex flex-col space-y-10 md:space-y-12">
-              {['Home', ...navLinks.map(l => l.name), 'Book Now'].map((item, i) => {
-                const path = item === 'Home' ? '/' : item === 'Book Now' ? '/booking' : `/${item.toLowerCase().replace(' ', '-')}`;
-                return (
-                  <motion.div
-                    key={item}
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: 0.1 + (i * 0.1), duration: 0.8 }}
-                  >
-                    <Link
-                      to={path}
-                      className="text-5xl md:text-7xl font-serif text-[#2d1b10] lowercase italic hover:opacity-50 transition-all flex items-center justify-between group"
-                    >
-                      {item}
-                      <ArrowRight className="opacity-0 group-hover:opacity-100 -translate-x-4 group-hover:translate-x-0 transition-all duration-500" size={32} strokeWidth={1} />
-                    </Link>
-                  </motion.div>
-                );
-              })}
-            </div>
-
-            <div className="pt-12 border-t border-[#ede3da] flex flex-col md:flex-row gap-8 justify-between items-start md:items-end">
-              <div className="space-y-4">
-                <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#a89078]">Vienna Location</p>
-                <p className="text-xs text-[#2d1b10] font-light italic">Schillerplatz 4, 1010 Vienna</p>
+              <div className="flex items-center gap-4 text-[#2d1b10]">
+                <Link to="/services" onClick={() => setIsOpen(false)} className="hover:text-[#a89078] transition-colors">
+                  <Search size={20} strokeWidth={1.5} />
+                </Link>
+                <Link to="/booking" onClick={() => setIsOpen(false)} className="hover:text-[#a89078] transition-colors">
+                  <ShoppingBag size={20} strokeWidth={1.5} />
+                </Link>
+                <button onClick={() => setIsOpen(false)} className="p-1 hover:text-[#a89078] transition-colors">
+                  <X size={24} strokeWidth={1} />
+                </button>
               </div>
-              <div className="space-y-4 text-right">
-                <p className="text-[10px] uppercase tracking-[0.4em] font-bold text-[#a89078]">Contact Us</p>
-                <p className="text-xs text-[#2d1b10] font-light italic">+43 660 123 4567</p>
+            </div>
+
+            <div className="flex-1 overflow-y-auto no-scrollbar">
+              {/* Primary Links */}
+              <div className="flex flex-col mb-8">
+                {['Home', 'Services', 'Gallery', 'Book Now'].map((item, i) => {
+                  const path = item === 'Home' ? '/' : item === 'Book Now' ? '/booking' : `/${item.toLowerCase().replace(' ', '-')}`;
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ x: -10, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: 0.1 + (i * 0.05), duration: 0.4 }}
+                    >
+                      <Link
+                        to={path}
+                        className="flex items-center justify-between py-4 border-b border-[#ede3da] group"
+                      >
+                        <span className="text-[10px] md:text-[11px] font-bold uppercase tracking-widest text-[#2d1b10]">{item}</span>
+                        <ChevronRight size={16} strokeWidth={1.5} className="text-[#a89078] group-hover:translate-x-1 transition-transform" />
+                      </Link>
+                    </motion.div>
+                  );
+                })}
+              </div>
+
+              {/* Secondary Links */}
+              <div className="flex flex-col space-y-1">
+                {['About', 'AI Guide', 'Contact'].map((item, i) => {
+                  const path = `/${item.toLowerCase().replace(' ', '-')}`;
+                  return (
+                    <motion.div
+                      key={item}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ delay: 0.3 + (i * 0.05), duration: 0.4 }}
+                    >
+                      <Link
+                        to={path}
+                        className="block py-2.5 text-[13px] md:text-sm font-medium text-[#5c4a3e] hover:text-[#2d1b10] transition-colors"
+                      >
+                        {item}
+                      </Link>
+                    </motion.div>
+                  );
+                })}
               </div>
             </div>
           </motion.div>
