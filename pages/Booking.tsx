@@ -10,7 +10,7 @@ import PageLoader from '../components/PageLoader';
 const Booking: React.FC = () => {
   const [step, setStep] = useState(1);
   const [selectedServices, setSelectedServices] = useState<string[]>([]);
-  const [isInitializing, setIsInitializing] = useState(true);
+  const [isInitializing, setIsInitializing] = useState(false);
 
   // Form State
   const [bookingDate, setBookingDate] = useState('');
@@ -33,6 +33,10 @@ const Booking: React.FC = () => {
 
     return () => clearTimeout(timer);
   }, [location.state]);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [step]);
 
   const toggleService = (id: string) => {
     setSelectedServices(prev =>
@@ -144,7 +148,7 @@ I'm looking forward to my visit!`;
                       className="space-y-8 md:space-y-12 pb-16"
                     >
                       <div className="flex justify-between items-center md:items-end">
-                        <h2 className="text-2xl md:text-3xl font-serif text-[#2d1b10]">Select Rituals</h2>
+                        <h2 className="text-2xl md:text-3xl font-serif text-[#2d1b10]">Select Services</h2>
                         <div className="flex flex-col items-end">
                           <span className="text-[9px] uppercase tracking-widest text-[#a89078] font-bold">Menu</span>
                           <span className="text-[10px] text-[#2d1b10] italic">{SERVICES.length} Options</span>

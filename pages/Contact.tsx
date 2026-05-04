@@ -7,7 +7,7 @@ import PageLoader from '../components/PageLoader';
 
 const Contact: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
-  const [isInitializing, setIsInitializing] = useState(true);
+  const [isInitializing, setIsInitializing] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsInitializing(false), 1200);

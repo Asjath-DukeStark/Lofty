@@ -83,7 +83,7 @@ const AIConsultant: React.FC = () => {
   ]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [isInitializing, setIsInitializing] = useState(true);
+  const [isInitializing, setIsInitializing] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [showScrollButton, setShowScrollButton] = useState(false);
 

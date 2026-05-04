@@ -35,7 +35,7 @@ const HERO_SLIDES = [
 ];
 
 const Home: React.FC = () => {
-  const [isInitializing, setIsInitializing] = useState(true);
+  const [isInitializing, setIsInitializing] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   const { scrollY } = useScroll();
   const timerRef = useRef<number | null>(null);

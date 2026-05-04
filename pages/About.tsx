@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import PageLoader from '../components/PageLoader';
 
 const About: React.FC = () => {
-  const [isInitializing, setIsInitializing] = useState(true);
+  const [isInitializing, setIsInitializing] = useState(false);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsInitializing(false), 1200);

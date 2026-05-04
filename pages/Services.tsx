@@ -60,7 +60,7 @@ const Services: React.FC = () => {
   const [priceFilter, setPriceFilter] = useState('all');
   const [onlyPopular, setOnlyPopular] = useState(false);
   const [isFilterSticky, setIsFilterSticky] = useState(false);
-  const [isInitializing, setIsInitializing] = useState(true);
+  const [isInitializing, setIsInitializing] = useState(false);
 
   const [selectedService, setSelectedService] = useState<Service | null>(null);
 
