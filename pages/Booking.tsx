@@ -156,7 +156,7 @@ const Booking: React.FC = () => {
     const cleanPhone = CONTACT_INFO.phone.replace(/[^0-9]/g, '');
     const serviceList = selectedData.map(s => `• ${s.title} (${s.price})`).join('\n');
     const safeDate = getSafeDate();
-    const calLink = generateGoogleCalendarLink();
+    // const calLink = generateGoogleCalendarLink(); // Temporarily disabled backup calendar link
 
     const message = `Hello Lofty Beauty! I'd like to book a ritual journey.
 
@@ -172,9 +172,6 @@ ${serviceList}
 
 *Notes:* 
 ${userNotes || 'None'}
-
-*Add to Calendar (Backup - Tap ONLY if not auto-synced):*
-${calLink}
 
 I'm looking forward to my visit!`;
 
@@ -468,7 +465,7 @@ I'm looking forward to my visit!`;
                                 ⚠️ Sync Notice
                               </div>
                               <p className="text-[11px] text-[#a04e56] font-light italic">
-                                Background sync was attempted. Please use the backup link in WhatsApp if it is not visible on your calendar yet.
+                                Background sync was attempted. Please check your calendar in a few moments if the event is not visible yet.
                               </p>
                             </div>
                           )}
