@@ -62,9 +62,93 @@ const Booking: React.FC = () => {
     return { price, duration };
   }, [selectedData]);
 
+  const getSafeDate = () => {
+    if (bookingDate) return bookingDate;
+    const today = new Date();
+    const yyyy = today.getFullYear();
+    const mm = String(today.getMonth() + 1).padStart(2, '0');
+    const dd = String(today.getDate()).padStart(2, '0');
+    return `${yyyy}-${mm}-${dd}`;
+  };
+
+  const generateGoogleCalendarLink = () => {
+    const safeDate = getSafeDate();
+    const dateStr = safeDate.replace(/-/g, ''); // "YYYYMMDD"
+    let startHour = "09";
+    let endHour = "12";
+    
+    if (bookingTime.includes("Midday")) {
+      startHour = "12";
+      endHour = "15";
+    } else if (bookingTime.includes("Late")) {
+      startHour = "15";
+      endHour = "19";
+    }
+    
+    const dates = `${dateStr}T${startHour}0000/${dateStr}T${endHour}0000`;
+    const title = `Lofty Booking: ${userName || 'Client'} (${selectedData.map(s => s.title).join(', ')})`;
+    const details = `🌟 LOFTY BEAUTY RESERVATION 🌟\n\n• Client Name: ${userName || 'Not specified'}\n• Services: ${selectedData.map(s => `${s.title} (LKR ${s.price.replace(/LKR/g, '').trim()})`).join(', ')}\n• Total Investment: LKR ${totals.price}\n• Duration: ~${totals.duration} min\n• Notes: ${userNotes || 'None'}\n\nLocation: 73/2 AVV Road, Akkaraipattu 19, Sri Lanka`;
+
+    const baseUrl = 'https://calendar.google.com/calendar/render';
+    const params = new URLSearchParams({
+      action: 'TEMPLATE',
+      text: title,
+      dates: dates,
+      details: details,
+      location: '73/2 AVV Road, Akkaraipattu 19, Sri Lanka',
+      ctz: 'Asia/Colombo'
+    });
+    
+    return `${baseUrl}?${params.toString()}`;
+  };
+
+  const syncToGoogleCalendar = async () => {
+    const url = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
+    if (!url) return;
+
+    const safeDate = getSafeDate();
+    let startHour = "09:00:00";
+    let endHour = "12:00:00";
+    
+    if (bookingTime.includes("Midday")) {
+      startHour = "12:00:00";
+      endHour = "15:00:00";
+    } else if (bookingTime.includes("Late")) {
+      startHour = "15:00:00";
+      endHour = "19:00:00";
+    }
+    
+    const startTimeIso = `${safeDate}T${startHour}`;
+    const endTimeIso = `${safeDate}T${endHour}`;
+
+    try {
+      await fetch(url, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          name: userName || 'Client',
+          services: selectedData.map(s => s.title).join(', '),
+          price: totals.price.toString(),
+          duration: totals.duration.toString(),
+          notes: userNotes || 'None',
+          startTime: startTimeIso,
+          endTime: endTimeIso
+        })
+      });
+      console.log("Calendar sync triggered in background");
+    } catch (e) {
+      console.error("Error triggering calendar sync:", e);
+    }
+  };
+
   const generateWhatsAppLink = () => {
     const cleanPhone = CONTACT_INFO.phone.replace(/[^0-9]/g, '');
     const serviceList = selectedData.map(s => `• ${s.title} (${s.price})`).join('\n');
+    const safeDate = getSafeDate();
+    const calLink = generateGoogleCalendarLink();
 
     const message = `Hello Lofty Beauty! I'd like to book a ritual journey.
 
@@ -72,7 +156,7 @@ const Booking: React.FC = () => {
 ${serviceList}
 
 *Details:*
-• Date: ${bookingDate || 'Not specified'}
+• Date: ${safeDate}
 • Time: ${bookingTime}
 • Name: ${userName || 'Not specified'}
 • Total: LKR ${totals.price}
@@ -81,6 +165,9 @@ ${serviceList}
 *Notes:* 
 ${userNotes || 'None'}
 
+*Add to Calendar (Backup - Tap ONLY if not auto-synced):*
+${calLink}
+
 I'm looking forward to my visit!`;
 
     return `https://wa.me/${cleanPhone}?text=${encodeURIComponent(message)}`;
@@ -88,6 +175,10 @@ I'm looking forward to my visit!`;
 
   const handleFinalConfirm = () => {
     setStep(3);
+    
+    // Trigger background sync to Google Calendar
+    syncToGoogleCalendar();
+
     const link = generateWhatsAppLink();
     // Open WhatsApp in a new tab
     window.open(link, '_blank');
