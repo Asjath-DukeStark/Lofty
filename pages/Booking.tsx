@@ -17,6 +17,7 @@ const Booking: React.FC = () => {
   const [bookingTime, setBookingTime] = useState('Morning (09:00 - 12:00)');
   const [userName, setUserName] = useState('');
   const [userNotes, setUserNotes] = useState('');
+  const [syncStatus, setSyncStatus] = useState<'idle' | 'syncing' | 'success' | 'error' | 'no_url'>('idle');
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -104,7 +105,12 @@ const Booking: React.FC = () => {
 
   const syncToGoogleCalendar = async () => {
     const url = import.meta.env.VITE_GOOGLE_SCRIPT_URL;
-    if (!url) return;
+    if (!url) {
+      setSyncStatus('no_url');
+      return;
+    }
+
+    setSyncStatus('syncing');
 
     const safeDate = getSafeDate();
     let startHour = "09:00:00";
@@ -126,7 +132,7 @@ const Booking: React.FC = () => {
         method: 'POST',
         mode: 'no-cors',
         headers: {
-          'Content-Type': 'application/json'
+          'Content-Type': 'text/plain'
         },
         body: JSON.stringify({
           name: userName || 'Client',
@@ -139,8 +145,10 @@ const Booking: React.FC = () => {
         })
       });
       console.log("Calendar sync triggered in background");
+      setSyncStatus('success');
     } catch (e) {
       console.error("Error triggering calendar sync:", e);
+      setSyncStatus('error');
     }
   };
 
@@ -434,6 +442,48 @@ I'm looking forward to my visit!`;
                           </div>
                         </div>
                       </div>
+
+                      {/* Calendar Sync Status Feedback */}
+                      {syncStatus !== 'idle' && (
+                        <div className="max-w-md mx-auto text-center py-4 px-6 rounded-2xl border text-xs md:text-sm font-medium transition-all shadow-sm bg-white border-[#ede3da] space-y-1">
+                          {syncStatus === 'syncing' && (
+                            <div className="text-[#a89078] flex items-center justify-center gap-3 py-1">
+                              <span className="w-4 h-4 border-2 border-[#a89078] border-t-transparent rounded-full animate-spin"></span>
+                              <span className="font-semibold uppercase tracking-wider text-[10px]">Syncing sanctuary calendar...</span>
+                            </div>
+                          )}
+                          {syncStatus === 'success' && (
+                            <div className="text-[#2b5c3f] flex flex-col items-center gap-1">
+                              <div className="flex items-center gap-2 font-bold uppercase tracking-wider text-[10px] text-[#2b5c3f]">
+                                <Check size={12} className="stroke-[3px]" /> Event Auto-Synced
+                              </div>
+                              <p className="text-[11px] text-[#5c7a65] font-light italic">
+                                Your business calendar has been automatically updated with a 2-hour reminder!
+                              </p>
+                            </div>
+                          )}
+                          {syncStatus === 'error' && (
+                            <div className="text-[#842029] flex flex-col items-center gap-1">
+                              <div className="font-bold uppercase tracking-wider text-[10px] text-[#842029]">
+                                ⚠️ Sync Notice
+                              </div>
+                              <p className="text-[11px] text-[#a04e56] font-light italic">
+                                Background sync was attempted. Please use the backup link in WhatsApp if it is not visible on your calendar yet.
+                              </p>
+                            </div>
+                          )}
+                          {syncStatus === 'no_url' && (
+                            <div className="text-[#5c4a3e] flex flex-col items-center gap-1">
+                              <div className="font-bold uppercase tracking-wider text-[10px] text-[#a89078]">
+                                💡 Setup Auto-Sync
+                              </div>
+                              <p className="text-[11px] text-[#8c786a] font-light italic">
+                                Configure VITE_GOOGLE_SCRIPT_URL in .env to automate booking entries & alerts!
+                              </p>
+                            </div>
+                          )}
+                        </div>
+                      )}
 
                       <div className="flex flex-col gap-3 pt-4">
                         <a
